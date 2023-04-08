@@ -1,3 +1,125 @@
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-</h1>
+<nav
+class="fixed flex-wrap text-gray-100 text-[1.15em] w-full top-0 left-0 z-20 bg-black/30 backdrop-blur flex wrap flex-row justify-around justify-items-end py-5"
+>
+<button
+  data-collapse-toggle="navbar-default"
+  id="collapse-button"
+  (click)="toggleCollapse()"
+  type="button"
+  class="inline-flex items-center p-2 ml-3 text-sm text-gray-100 rounded-lg md:hidden hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-green-300 dark:text-gray-100 dark:hover:bg-green-400 dark:focus:ring-green-400"
+  aria-controls="navbar-default"
+  aria-expanded="false"
+>
+  <span class="sr-only">Open main menu</span>
+  <svg
+    class="w-6 h-6"
+    aria-hidden="true"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+      clip-rule="evenodd"
+    ></path>
+  </svg>
+</button>
+<a
+  routerLink="login"
+  class=" p-3 float-right bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500 md:order-2"
+  >Iniciar Sesión</a
+>
+<div class="break md:hidden"></div>
+<ul id="nav-content" class="p-3 hidden md:flex flex-row items-center md:order-1">
+  <li class="ml-10 transition hover:text-gray-300">
+    <a href="#">Inicio</a>
+  </li>
+  <li class="ml-10 transition hover:text-gray-300">
+    <a>Explorar</a>
+  </li>
+  <li class="ml-10 transition hover:text-gray-300">
+    <a>Contacto</a>
+  </li>
+  <li class="ml-10 transition group hover:text-gray-300">
+    <a
+      ><span class="header-font group-hover:text-green-500 transition"
+        >Reservoo</span
+      >
+      para restaurantes</a
+    >
+  </li>
+</ul>
+</nav>
+<header class="bg-[url('img/index-image.jpg')] bg-auto md:bg-repeat-round">
+<div>
+  <h1 class="w-full h-[50em] flex justify-center items-center">
+    <span
+      class="text-[12em] text-white bg-green-300/80 rounded-2xl backdrop-blur-sm text-center header-font"
+    >
+      Reservoo
+    </span>
+  </h1>
+</div>
+</header>
+<main>
+<section class="flex my-5 md:flex-row justify-around flex-col">
+  <div
+    class="flex bg-white md:mx-8 md:my-0 flex-col items-center border-green-500 border-2 rounded my-8"
+  >
+    <img
+      src="img/348787.png"
+      class="mt-1 rounded-3xl bg-green-200"
+      alt="reserved"
+      width="100em"
+    />
+    <h2 class="text-5xl text-center">Reserva</h2>
+    <br />
+    <p class="text-center text-xl mb-3">
+      Reserva cuando quieras donde quieras y asegurate de tener mesa.<br />
+      Haz la reserva más fácil utilizando nuestro servicios.
+    </p>
+  </div>
+  <div
+    class="flex bg-white md:mx-8 md:my-0 flex-col items-center border-green-500 border-2 rounded my-8"
+  >
+    <img
+      src="img/restaurante.png"
+      class="mt-1 rounded-3xl bg-green-200"
+      alt="reserved"
+      width="100em"
+    />
+    <h2 class="text-5xl text-center">Consulta la carta</h2>
+    <br />
+    <p class="text-center text-xl mb-3">
+      Consulta la carta antes de reservar y preparate para comer bien.<br />
+      Podrás conocer la carta del local siempre que gustes.
+    </p>
+  </div>
+  <div
+    class="flex bg-white md:mx-8 md:my-0 flex-col items-center border-green-500 border-2 rounded my-8"
+  >
+    <img
+      src="img/food-and-restaurant.png"
+      class="mt-1 rounded-3xl bg-green-200"
+      alt="reserved"
+      width="100em"
+    />
+    <h2 class="text-5xl text-center">Llega</h2>
+    <br />
+    <p class="text-center text-xl mb-3">
+      Una vez llegues, podrás comer tranquilamente y sin complicaciones.
+    </p>
+  </div>
+</section>
+</main>
+<footer class="bg-white">
+<p class="text-center">
+  &copy; Página creada por Álvaro León García de 2ºDAW
+</p>
+<p class="text-center">
+  Consulta los créditos a las imganes haciendo click <a>aquí</a>
+</p>
+</footer>
+
+
