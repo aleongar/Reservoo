@@ -1,1 +1,61 @@
-<p>users works!</p>
+<div class="table table-responsive">
+  <table class="table-borderless mt-3 w-100">
+    <tr class="bg-light">
+      <td>ID</td>
+      <td>Email</td>
+      <td>Nombre</td>
+      <td>Rol</td>
+      <td colspan="2"><button class="btn btn-success" (click)="closeModal(); open(content)">+ Añadir</button></td>
+    </tr>
+    <tr *ngFor="let user of users">
+      <td>{{user.id}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.rol}}</td>
+      <td><button type="button" style="background-color: var(--bs-primary) !important" class="btn btn-primary" (click)="editUser(user.id); open(content)">Editar</button>
+      </td>
+      <td><button type="button" style="background-color: var(--bs-danger) !important" class="btn btn-danger" (click)="deleteUser(user.id)">Eliminar</button></td>
+    </tr>
+  </table>
+</div>
+
+<div class="modal fade" >
+  <div class="modal-dialog">
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h5 class="modal-title">{{editingId === '' ? 'Añadir' : 'Editar'}} Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click'); closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form action="POST" [formGroup]="userForm" >
+          <div class="mb-3">
+            <label for="name">Nombre</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" formControlName="name">
+          </div>
+          <div class="mb-3">
+            <label for="name">Email</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Email" formControlName="email">
+          </div>
+          <div class="mb-3">
+            <label for="name">Contraseña</label>
+            <input type="password" name="pass" id="pass" class="form-control" placeholder="Contraseña" formControlName="pass">
+          </div>
+          <div class="mb-3">
+            <label for="name">Rol</label>
+            <select class="form-select" formControlName="rol">
+              <option [ngValue]="null" disabled hidden selected>Elige rol</option>
+              <option value="1">ADMIN</option>
+              <option value="2">CLIENTE</option>
+              <option value="3">EMPRESA</option>
+            </select>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click'); closeModal()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="editingId === '' ? postUser() : putUser()">{{editingId === '' ? 'Añadir' : 'Editar'}}</button>
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -4,18 +4,23 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { IndexComponent } from './index/index.component';
 import { UsersComponent } from './users/users.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RestaurantesComponent } from './restaurantes/restaurantes.component';
+import { ReservasComponent } from './reservas/reservas.component';
 
 
 @NgModule({
   declarations: [
     IndexComponent,
-    UsersComponent
+    UsersComponent,
+    RestaurantesComponent,
+    ReservasComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule 
   ]
 })
 export class AdminModule { }

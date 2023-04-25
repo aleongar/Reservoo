@@ -13,7 +13,7 @@ export class AuthInterceptorService implements HttpInterceptor{
   private ADMIN = 1;
   private CLIENTE = 2;
   private EMPRESA = 3;
-  private url = 'localhost:8000' //TODO: Cambiar cuando se pase a produccion
+  private url = 'http://127.0.0.1:8000' //TODO: Cambiar cuando se pase a produccion
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
@@ -38,7 +38,7 @@ export class AuthInterceptorService implements HttpInterceptor{
   }
 
   retrieveToken(email: string, password: string){
-    return this.http.post<any>(this.url+"/api/login", {dni: email, password: password})
+    return this.http.post<any>(this.url+"/api/login", {email: email, pass: password})
     .pipe(
       map((res) => {
         localStorage.setItem('token', res.token);

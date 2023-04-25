@@ -31,4 +31,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function restaurantes(){
+        return $this->hasMany(Restaurante::class);
+    }
+
+    public function reservas(){
+        return $this->belongsToMany(Restaurante::class, 'reserva', 'user_id', 'restaurante_id');
+    }
 }

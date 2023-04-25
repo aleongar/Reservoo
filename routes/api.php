@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\ReservasController;
+use App\Http\Controllers\RestauranteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [LoginController::class, 'login']);
 
-Route::resource('users', UserController::class);
+Route::get('users/emp', [UserController::class, 'getEmpresarios']);
+Route::apiResource('users', UserController::class);
+Route::apiResource('restaurants', RestauranteController::class);
+Route::apiResource('reservations', ReservasController::class);

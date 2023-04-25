@@ -8,11 +8,18 @@ import { Router } from '@angular/router';
 })
 export class IndexComponent {
 
-  constructor(private router: Router){}
+  constructor(private router: Router){
+    if(sessionStorage.getItem('reloadneeded') == 'true'){
+      sessionStorage.setItem('reloadneeded', 'false');
+      window.location.reload();
+    }
+  }
 
   logOut(){
     localStorage.clear();
     sessionStorage.clear();
+    sessionStorage.setItem('reloadneeded', 'true');
     this.router.navigate(['/login']);
+    window.location.reload();
   }
 }

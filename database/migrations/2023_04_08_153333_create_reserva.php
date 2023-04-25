@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reserva', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('restaurante_id');
-            $table->string('h_reserva');
+            $table->timestamp('h_reserva');
+            $table->boolean('aprovada')->default(false);
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('restaurante_id')->references('id')->on('restaurantes');
             $table->timestamps();

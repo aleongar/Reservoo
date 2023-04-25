@@ -20,12 +20,27 @@ class UserController extends Controller
         return User::all();
     }
 
+    public function getEmpresarios(){
+        $users = User::where('rol', '3')->get();
+        return $users;
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        return $request;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if(!empty($request->pass))
+            $user->password = bcrypt($request->pass);
+        else
+            $user->password = bcrypt(1234);
+        $user->rol = $request->rol;
+        $user->save();
+        return $user;
     }
 
     /**
@@ -41,7 +56,14 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if(!empty($request->pass))
+            $user->password = bcrypt($request->pass);
+        $user->rol = $request->rol;
+        $user->save();
+        return $user;
     }
 
     /**
@@ -49,6 +71,6 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return User::findOrFail($id)->delete();
     }
 }

@@ -1,0 +1,96 @@
+<div class="table table-responsive">
+  <table class="table-borderless mt-3 w-100">
+    <tr class="bg-light">
+      <td>ID</td>
+      <td>Nombre</td>
+      <td>Descripción</td>
+      <td>Aforo</td>
+      <td>H. Mañana</td>
+      <td>H. Tarde</td>
+      <td>Dirección</td>
+      <td>Email Usuario</td>
+      <td colspan="2"><button class="btn btn-success" (click)="closeModal(); open(content)">+ Añadir</button></td>
+    </tr>
+    <tr *ngFor="let restaurante of restaurantes">
+      <td>{{restaurante.id}}</td>
+      <td>{{restaurante.nombre}}</td>
+      <td>{{(restaurante.descripcion.length > 15)? (restaurante.descripcion | slice:0:15)+'...': restaurante.descripcion}}</td>
+      <td>{{restaurante.aforo}}</td>
+      <td>{{restaurante.h_manana}}</td>
+      <td>{{restaurante.h_tarde}}</td>
+      <td>{{restaurante.direccion}}</td>
+      <td>{{restaurante.user.email}}</td>
+      <td><button type="button" style="background-color: var(--bs-primary) !important" class="btn btn-primary" (click)="editRestaurant(restaurante.id); open(content)">Editar</button>
+      </td>
+      <td><button type="button" style="background-color: var(--bs-danger) !important" class="btn btn-danger" (click)="deleteRestaurant(restaurante.id)">Eliminar</button></td>
+    </tr>
+  </table>
+</div>
+
+<div class="modal fade" >
+  <div class="modal-dialog">
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h5 class="modal-title">{{editingId === '' ? 'Añadir' : 'Editar'}} Restaurante</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click'); closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form action="POST" [formGroup]="userForm" >
+          <div class="mb-3">
+            <label for="name">Nombre</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" formControlName="nombre">
+          </div>
+          <div class="mb-3">
+            <label for="desc">Descripción</label>
+            <textarea id="desc" class="form-control" placeholder="Descripción" formControlName="descripcion"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="aforo">Aforo</label>
+            <input type="number" name="aforo" id="aforo" class="form-control" placeholder="Aforo" formControlName="aforo">
+          </div>
+          <div class="mb-3 d-flex flex-column">
+            <label for="h_manana1">Horario mañana</label>
+            <div class="d-flex justify-content-between">
+              <input type="number" name="h_manana1_1" id="h_manana1_1" class="form-control" placeholder="00" formControlName="h_manana1_1">
+              <span class="fs-4">:</span>
+              <input type="number" name="h_manana1_2" id="h_manana1_2" class="form-control" placeholder="00" formControlName="h_manana1_2">
+              <span class="text-center fs-4">-</span>
+              <input type="number" name="h_manana2_1" id="h_manana2_1" class="form-control" placeholder="00" formControlName="h_manana2_1">
+              <span class="fs-4">:</span>
+              <input type="number" name="h_manana2_2" id="h_manana2_2" class="form-control" placeholder="00" formControlName="h_manana2_2">
+            </div>
+          </div>
+          <div class="mb-3 d-flex flex-column">
+            <label for="h_manana1">Horario tarde</label>
+            <div class="d-flex justify-content-between">
+              <input type="number" name="h_tarde1_1" id="h_tarde1_1" class="form-control" placeholder="00" formControlName="h_tarde1_1">
+              <span class="fs-4">:</span>
+              <input type="number" name="h_tarde1_2" id="h_tarde1_2" class="form-control" placeholder="00" formControlName="h_tarde1_2">
+              <span class="text-center fs-4">-</span>
+              <input type="number" name="h_tarde2_1" id="h_tarde2_1" class="form-control" placeholder="00" formControlName="h_tarde2_1">
+              <span class="fs-4">:</span>
+              <input type="number" name="h_tarde2_2" id="h_tarde2_2" class="form-control" placeholder="00" formControlName="h_tarde2_2">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="direccion">Dirección</label>
+            <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Dirección" formControlName="direccion">
+          </div>
+          <div class="mb-3">
+            <label for="name">Usuario</label>
+            <select class="form-select" formControlName="idUsuario">
+              <option [ngValue]="null" disabled hidden selected>Elige usuario</option>
+              <option *ngFor="let user of usuariosEmpresarios" value="{{user.id}}">{{user.email}}</option>
+            </select>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click'); closeModal()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="editingId === '' ? postRestaurant() : putRestaurant()">{{editingId === '' ? 'Añadir' : 'Editar'}}</button>
+      </div>
+    </ng-template>
+  </div>
+</div>
+

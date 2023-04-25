@@ -8,7 +8,12 @@ import { AuthInterceptorService } from '../service/auth/auth-interceptor.service
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor(private router: Router, private loginService: AuthInterceptorService){}
+  constructor(private router: Router, private loginService: AuthInterceptorService){
+    if(sessionStorage.getItem('reloadneeded') == 'true'){
+      sessionStorage.setItem('reloadneeded', 'false');
+      window.location.reload();
+    }
+  }
   protected loginData = {
     email: '',
     password: ''
@@ -19,8 +24,9 @@ export class LoginComponent {
       console.log(localStorage.getItem('rol'));
       if(localStorage.getItem('rol') === '1'){
         this.router.navigate(['/admin/users']);
+        sessionStorage.setItem('reloadneeded', 'true');
       }
     });
-    console.log(this.loginData);
+
   }
 }
