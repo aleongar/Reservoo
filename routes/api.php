@@ -27,4 +27,5 @@ Route::post('login', [LoginController::class, 'login']);
 Route::get('users/emp', [UserController::class, 'getEmpresarios']);
 Route::apiResource('users', UserController::class);
 Route::apiResource('restaurants', RestauranteController::class);
+Route::put('reservations/{id}/confirmation', [ReservasController::class, 'confirmation']);
 Route::apiResource('reservations', ReservasController::class);

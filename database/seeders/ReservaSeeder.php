@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Reserva;
 use App\Models\Restaurante;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -15,11 +16,15 @@ class ReservaSeeder extends Seeder
      */
     public function run(): void
     {
-        for($i = 0; $i < 3; $i++){
+        for($i = 0; $i < random_int(3, 10); $i++){
             $user = User::inRandomOrder()->first();
             $restaurant = Restaurante::inRandomOrder()->first();
 
-            DB::insert('insert into reserva (user_id, restaurante_id, h_reserva, created_at, updated_at) values (?, ?, ?, ?, ?)', [$user->id, $restaurant->id, fake()->dateTime(), \Carbon\Carbon::now(), \Carbon\Carbon::now()]);
+            Reserva::factory()->count(random_int(1, 3))->create(
+                ['user_id' => $user->id,
+                'restaurante_id' => $restaurant->id]
+            );
+
         }
     }
 }

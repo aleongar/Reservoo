@@ -7,7 +7,10 @@ import { UsersComponent } from './users/users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RestaurantesComponent } from './restaurantes/restaurantes.component';
 import { ReservasComponent } from './reservas/reservas.component';
-
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { ReservasComponent } from './reservas/reservas.component';
     CommonModule,
     AdminRoutingModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+
   ]
 })
 export class AdminModule { }

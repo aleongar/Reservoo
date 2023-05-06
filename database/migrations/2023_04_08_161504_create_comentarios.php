@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
             $table->text('contenido');
-            $table->unsignedBigInteger('restaurante_id');
             $table->unsignedBigInteger('resena_id');
-            $table->foreign('restaurante_id')->references('id')->on('restaurantes');
             $table->foreign('resena_id')->references('id')->on('resenas');
             $table->timestamps();
         });

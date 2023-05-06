@@ -1,1 +1,63 @@
-<p>reservas works!</p>
+<div class="table table-responsive">
+  <table class="table-borderless mt-3 w-100">
+    <tr class="bg-light">
+      <td>ID</td>
+      <td>Email Usuario</td>
+      <td>Nombre Restaurante</td>
+      <td>Fecha y hora</td>
+      <td>Confirmada</td>
+      <td colspan="2"><button class="btn btn-success" (click)="closeModal(); open(content)">+ Añadir</button></td>
+    </tr>
+    <tr *ngFor="let reservation of reservations">
+      <td>{{reservation.id}}</td>
+      <td>{{reservation.user.email}}</td>
+      <td>{{reservation.restaurante.nombre}}</td>
+      <td>{{reservation.h_reserva | date: 'dd/MM/yyyy H:mm'}}</td>
+      <td><div class="form-check form-switch">
+        <input type="checkbox" class="form-check-input" [(ngModel)]="reservation.aprovada" [checked]="reservation.aprovada" (click)="confirmReservation(reservation.id ,reservation.aprovada)"></div></td>
+      <td><button type="button" style="background-color: var(--bs-primary) !important" class="btn btn-primary" (click)="edit(reservation.id); open(content)">Editar</button>
+      </td>
+      <td><button type="button" style="background-color: var(--bs-danger) !important" class="btn btn-danger" (click)="deleteReservation(reservation.id)">Eliminar</button></td>
+    </tr>
+  </table>
+</div>
+
+<div class="modal fade" >
+  <div class="modal-dialog">
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h5 class="modal-title">{{editingId === '' ? 'Añadir' : 'Editar'}} Reserva</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click'); closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form action="POST" [formGroup]="userForm" >
+          <div class="mb-3">
+            <label for="name">Usuario que reserva</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Usuario" formControlName="user">
+          </div>
+          <div class="mb-3">
+            <label for="name">Restaurante al que reserva</label>
+            <input type="text" name="restaurant" id="restaurant" class="form-control" placeholder="Restaurante" formControlName="restaurant">
+          </div>
+          <div class="mb-3">
+            <label for="name">Fecha y hora</label>
+            <input type="date" class="form-control" name="date" id="date" formControlName="date">
+            <div class="d-flex">
+              <input class="form-control" min="0" max="23" type="number" name="hour" id="hour" formControlName="hour">:
+              <input class="form-control" min="0" max="59" type="number" name="min" id="min" formControlName="min">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="name">Confirmado</label>
+            <input type="checkbox" class="form-check-input" formControlName="aproved">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click'); closeModal()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="editingId === '' ? postReservation() : putReservation()">{{editingId === '' ? 'Añadir' : 'Editar'}}</button>
+      </div>
+    </ng-template>
+  </div>
+</div>

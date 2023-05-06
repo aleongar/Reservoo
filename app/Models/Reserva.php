@@ -4,19 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Restaurante extends Model
+class Reserva extends Model
 {
     use HasFactory;
 
-    protected $table = 'restaurantes';
+    protected $table = 'Reserva';
 
     public function user(){
         return $this->belongsTo(User::class);
     }
 
-    public function reservas(){
-        return $this->hasMany(Reserva::class);
+    public function restaurante(){
+        return $this->belongsTo(Restaurante::class);
     }
 }

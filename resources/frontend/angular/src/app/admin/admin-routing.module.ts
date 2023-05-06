@@ -7,6 +7,7 @@ import { ReservasComponent } from './reservas/reservas.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent, children:[
+    {path: '', component: UsersComponent},
     {path: 'users', component: UsersComponent},
     {path: 'restaurantes', component: RestaurantesComponent},
     {path: 'reservas', component: ReservasComponent}
