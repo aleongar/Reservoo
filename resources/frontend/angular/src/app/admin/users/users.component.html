@@ -14,7 +14,7 @@
       <td>{{user.rol}}</td>
       <td><button type="button" style="background-color: var(--bs-primary) !important" class="btn btn-primary" (click)="editUser(user.id); open(content)">Editar</button>
       </td>
-      <td><button type="button" style="background-color: var(--bs-danger) !important" class="btn btn-danger" (click)="deleteUser(user.id)">Eliminar</button></td>
+      <td><button [disabled]="user.email === 'admin@reservoo.com'" type="button" style="background-color: var(--bs-danger) !important" class="btn btn-danger" (click)="deleteUser(user.id)">Eliminar</button></td>
     </tr>
   </table>
 </div>

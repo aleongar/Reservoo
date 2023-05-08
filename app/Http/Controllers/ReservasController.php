@@ -31,7 +31,7 @@ class ReservasController extends Controller
         $reservation->restaurante_id = $request->restaurant;
         $reservation->h_reserva = $request->h_reserva;
         $reservation->aprovada = 0;
-        if ($request->has('aprovado')){
+        if ($request->has('aprovado')) {
             $reservation->aprovada = $request->aprovado;
         }
         $reservation->save();
@@ -56,14 +56,15 @@ class ReservasController extends Controller
         $reservation->restaurante_id = $request->restaurant;
         $reservation->h_reserva = $request->h_reserva;
         $reservation->aprovada = 0;
-        if ($request->has('aprovado')){
+        if ($request->has('aprovado')) {
             $reservation->aprovada = $request->aprovado;
         }
         $reservation->save();
         return $reservation;
     }
 
-    public function confirmation(Request $request, string $id){
+    public function confirmation(Request $request, string $id)
+    {
         $reservation = Reserva::findOrFail($id);
         $reservation->aprovada = $request['confirm'] ? 1 : 0;
         $reservation->save();

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\ComentariosController;
+use App\Http\Controllers\ResenasController;
 use App\Http\Controllers\ReservasController;
 use App\Http\Controllers\RestauranteController;
 use App\Http\Controllers\UserController;
@@ -29,3 +31,5 @@ Route::apiResource('users', UserController::class);
 Route::apiResource('restaurants', RestauranteController::class);
 Route::put('reservations/{id}/confirmation', [ReservasController::class, 'confirmation']);
 Route::apiResource('reservations', ReservasController::class);
+Route::apiResource('resenas', ResenasController::class);
+Route::apiResource('coments', ComentariosController::class);

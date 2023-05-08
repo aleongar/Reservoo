@@ -19,4 +19,12 @@ class Restaurante extends Model
     public function reservas(){
         return $this->hasMany(Reserva::class);
     }
+
+    public function resenas(){
+        return $this->hasMany(Resena::class);
+    }
+
+    public function comentarios(){
+        return $this->hasMany(Comentario::class);
+    }
 }

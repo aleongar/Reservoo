@@ -39,4 +39,8 @@ class User extends Authenticatable
     public function reservas(){
         return $this->belongsToMany(Restaurante::class, 'reserva', 'user_id', 'restaurante_id');
     }
+
+    public function resenas(){
+        return $this->hasMany(Resena::class);
+    }
 }

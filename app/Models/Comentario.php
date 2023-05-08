@@ -10,4 +10,8 @@ class Comentario extends Model
     use HasFactory;
 
     protected $table = 'comentarios';
+
+    public function resena(){
+        return $this->belongsTo(Resena::class);
+    }
 }
