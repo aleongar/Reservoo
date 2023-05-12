@@ -1,0 +1,50 @@
+<form class="pt-[15vh] md:pt-[10vh] pb-[100vh] bg-gray-200 p-3 flex justify-between">
+  <div class="w-[40%]">
+    <div>
+      <input class="mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="multiple_files" type="file" multiple>
+      <label>Horario Mañana:</label>
+      <div class="mb-6 flex flex-row justify-between">
+        <input type="time" class="w-[50%] border-black border-2 rounded" id="h_m_1" name="h_m_1">
+        -
+        <input type="time" class="w-[50%] border-black border-2 rounded" id="h_m_2" name="h_m_2">
+      </div>
+      <label>Horario Tarde:</label>
+      <div class="mb-6 flex flex-row justify-between">
+        <input type="time" class="w-[50%] border-black border-2 rounded" id="h_t_1" name="h_t_1">
+        -
+        <input type="time" class="w-[50%] border-black border-2 rounded" id="h_t_2" name="h_t_2">
+      </div>
+    </div>
+  </div>
+  <div class="w-[55%]">
+    <div class="mb-6">
+      <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
+      <input type="text" id="nombre" name="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+    </div>
+    <div class="mb-6">
+      <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Ubicación</label>
+      <input type="text" id="dirección" name="dirección" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+    </div>
+    <div class="mb-6">
+      <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Descripción</label>
+      <textarea id="descripcion" name="descripcion" rows="3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></textarea>
+    </div>
+    <div class="mb-6">
+      <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Carta</label>
+      <div class="flex flex-row">
+          <label for="online" class="mr-2">
+            <input type="radio" id="online" name="online" (change)="changeMethod($event)" value="0" checked> URL
+          </label>
+          <label for="upload">
+            <input type="radio" id="upload" name="online" (change)="changeMethod($event)" value="1"> Subir carta (pdf)
+          </label>
+      </div>
+    </div>
+    <div *ngIf="cardUpload" class="mb-6">
+      <input type="text" name="carta" id="carta">
+    </div>
+    <div *ngIf="!cardUpload" class="mb-6">
+      <input type="file" name="carta" id="carta">
+    </div>
+  </div>
+</form>

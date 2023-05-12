@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular';
+  title = 'Reservoo';
+  constructor(){
+    if(sessionStorage.getItem('reloadneeded') == 'true'){
+      sessionStorage.setItem('reloadneeded', 'false');
+      window.location.reload();
+    }
+  }
 }

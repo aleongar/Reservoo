@@ -1,0 +1,25 @@
+<div class="flex flex-col">
+  <span class="fixed bg-contain z-[-96] bg-[url(https://a.cdn-hotels.com/gdcs/production106/d1487/b50cbeaf-994e-4638-afca-5570d0822d38.jpg?impolicy=fcrop&w=1600&h=1066&q=medium)] p-[100vh]"></span>
+  <div class="p-[20vh] flex flex-wrap content-center justify-center">
+    <div class="bg-green-400/75 rounded-lg text-[4em] text-white header-font"> Hola, {{user.name}} </div>
+  </div>
+  <div class="bg-white grow">
+    <div *ngIf="user.restaurantes.length == 0" class="italic">
+      <div class="flex flex-row justify-between">
+        <h3 class="text-center text-[2em]">No hay restaurantes...</h3>
+        <a routerLink="../anadirRestaurante" class="p-3 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">
+          Añadir
+        </a>
+      </div>
+    </div>
+    <div class="flex flex-col flex-wrap content-center justify-between bg-gray-100" *ngIf="user.restaurantes.length > 0">
+      <div class="flex flex-row justify-between my-3">
+        <h3 class="text-center text-[2em]">Mis Restaurantes</h3>
+        <a routerLink="../anadirRestaurante" class="p-3 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">
+          Añadir
+        </a>
+      </div>
+      <app-restaurant-card class="mb-3" *ngFor="let restaurante of user.restaurantes" [restaurante]="restaurante"></app-restaurant-card>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,12 @@ export class RestaurantServiceService {
     );
   }
 
+  getRestaurantById(id: string){
+    return this.http.get<Restaurant>(this.url + '/' + id).pipe(
+      map((response => response))
+    );
+  }
+
   postRestaurant(restaurantData: any){
     return this.http.post<any>(this.url, restaurantData);
   }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Restaurante;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:sanctum');
+        $this->middleware('auth:sanctum')->except('store');
     }
 
     /**
@@ -31,7 +32,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = new User();
-        return $request;
         $user->name = $request->name;
         $user->email = $request->email;
         if(!empty($request->pass))
@@ -48,7 +48,11 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return User::where('id', $id)->with('restaurantes')->first();
+    }
+
+    public function getUserRestaurantsIDs(string $id){
+        return Restaurante::where('user_id', $id)->get(['id']);
     }
 
     /**

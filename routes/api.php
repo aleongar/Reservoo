@@ -27,9 +27,13 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [LoginController::class, 'login']);
 
 Route::get('users/emp', [UserController::class, 'getEmpresarios']);
+Route::get('users/rest/{id}', [UserController::class, 'getUserRestaurantsIDs']);
 Route::apiResource('users', UserController::class);
 Route::apiResource('restaurants', RestauranteController::class);
 Route::put('reservations/{id}/confirmation', [ReservasController::class, 'confirmation']);
+Route::get('reservations/rest/{restaurante}/{dia}', [ReservasController::class, 'getReservasEnDiaRestaurante']);
+Route::get('reservations/user/{usuario}/{dia}', [ReservasController::class, 'getReservasEnDiaUsuario']);
 Route::apiResource('reservations', ReservasController::class);
 Route::apiResource('resenas', ResenasController::class);
 Route::apiResource('coments', ComentariosController::class);
+

@@ -8,12 +8,16 @@ import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from './service/auth/auth-interceptor.service';
 import { FormsModule } from '@angular/forms';
+import { RegistroCienteComponent } from './registro-ciente/registro-ciente.component';
+import { RestaurantesInfoComponent } from './restaurantes-info/restaurantes-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponentComponent,
     LoginComponent,
+    RegistroCienteComponent,
+    RestaurantesInfoComponent,
   ],
   imports: [
     BrowserModule,

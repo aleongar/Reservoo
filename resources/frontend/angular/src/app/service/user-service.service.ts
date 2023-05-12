@@ -18,6 +18,12 @@ export class UserServiceService {
     );
   }
 
+  getUserById(id: string): Observable<User>{
+    return this.http.get<User>(this.url + '/' + id).pipe(
+      map((res => res))
+    );
+  }
+
   getEmpresasUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.url+'/emp').pipe(
       map((res => res))
@@ -34,5 +40,11 @@ export class UserServiceService {
 
   deleteUser(id: string){
     return this.http.delete(this.url + '/' + id);
+  }
+
+  getUserWithRestaurantsIDs(id: string){
+    return this.http.get<User>(this.url + '/rest/' + id).pipe(
+      map((res => res))
+    );
   }
 }

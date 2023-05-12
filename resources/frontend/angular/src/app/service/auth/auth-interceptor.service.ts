@@ -10,9 +10,9 @@ export class AuthInterceptorService implements HttpInterceptor{
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  private ADMIN = 1;
-  private CLIENTE = 2;
-  private EMPRESA = 3;
+  public ADMIN = '1';
+  public CLIENTE = '2';
+  public EMPRESA = '3';
   private url = 'http://127.0.0.1:8000' //TODO: Cambiar cuando se pase a produccion
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -43,6 +43,9 @@ export class AuthInterceptorService implements HttpInterceptor{
       map((res) => {
         localStorage.setItem('token', res.token);
         localStorage.setItem('rol', res.rol);
+        if(res.rol !== this.ADMIN){
+          localStorage.setItem('id', res.id);
+        }
       })
     )
   }

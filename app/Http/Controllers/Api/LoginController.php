@@ -16,6 +16,7 @@ class LoginController extends Controller
             return response()->json([
                 'token' => $usuario->createToken($usuario->email)->plainTextToken,
                 'rol' => $usuario->rol,
+                'id' => $usuario->id
             ]);
         }
         return response()->json(['error' => 'Credenciales no validas'], 401);

@@ -1,0 +1,31 @@
+<div class="bg-[url('img/index-image.jpg')] blur-sm bg-repeat-round absolute w-full h-full">
+</div>
+ <div class="bg-black/20 absolute inset-0 flex flex-row items-center justify-center">
+    <div class="bg-white rounded w-[30em]">
+      <form class="m-5" method="post">
+        <div class="mb-6">
+          <label for="name" class="block mb-2 text-sm font-medium text-gray-900 ">Nombre:</label>
+          <input [ngModelOptions]="{standalone: true}" [(ngModel)]="registerData.name" type="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 0 y-600 r-gray-400  -blue-500 er-blue-500" placeholder="Nombre" required>
+        </div>
+        <div class="mb-6">
+          <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Email:</label>
+          <input [ngModelOptions]="{standalone: true}" [(ngModel)]="registerData.email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 0 y-600 r-gray-400  -blue-500 er-blue-500" placeholder="email@email.com" required>
+        </div>
+        <div class="mb-6">
+          <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Contraseña:</label>
+          <input [ngModelOptions]="{standalone: true}" [(ngModel)]="registerData.pass" type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 0 y-600 r-gray-400  -blue-500 er-blue-500" required>
+        </div>
+        <div class="mb-6">
+          <label for="confirm" class="block mb-2 text-sm font-medium text-gray-900 ">Repite contraseña:</label>
+          <input [ngModelOptions]="{standalone: true}" [(ngModel)]="registerData.confirm" type="password" id="confirm" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 0 y-600 r-gray-400  -blue-500 er-blue-500" required>
+        </div>
+        <div id="error" style="display: none;" class="mb-6 text-red-600">
+        </div>
+        <div id="info" style="display: none;" class="mb-6">
+        </div>
+        <div class="flex flex-row justify-center">
+          <button type="submit" (click)="register()" class="ml-5 text-white bg-green-500 transition ease-in-out hover:bg-cyan-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Registrarse</button>
+        </div>
+      </form>
+    </div>
+</div>

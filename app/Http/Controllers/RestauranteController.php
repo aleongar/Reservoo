@@ -43,7 +43,7 @@ class RestauranteController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Restaurante::findOrFail($id)->get();
     }
 
     /**
@@ -72,4 +72,5 @@ class RestauranteController extends Controller
         $restaurante->delete();
         return $restaurante;
     }
+
 }

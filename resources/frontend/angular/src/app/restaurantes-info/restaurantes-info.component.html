@@ -1,0 +1,69 @@
+<div class="bg-gray-300 h-[100vh]">
+  <nav
+  class="flex-wrap text-gray-100 text-[1.15em] w-full top-0 left-0 z-20 bg-black/30 backdrop-blur flex wrap flex-row justify-around justify-items-end py-5"
+  >
+  <button
+    data-collapse-toggle="navbar-default"
+    id="collapse-button"
+    (click)="toggleCollapse()"
+    type="button"
+    class="inline-flex items-center p-2 ml-3 text-sm text-gray-100 rounded-lg md:hidden hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-green-300 dark:text-gray-100 dark:hover:bg-green-400 dark:focus:ring-green-400"
+    aria-controls="navbar-default"
+    aria-expanded="false"
+  >
+    <span class="sr-only">Open main menu</span>
+    <svg
+      class="w-6 h-6"
+      aria-hidden="true"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+  </button>
+  <a
+    routerLink="login"
+    class=" p-3 float-right bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500 md:order-2"
+    >Iniciar Sesión</a
+  >
+  <div class="break md:hidden"></div>
+  <ul id="nav-content" class="p-3 hidden md:flex flex-row items-center md:order-1">
+    <li class="ml-10 transition hover:text-gray-300">
+      <a routerLink="/">Inicio</a>
+    </li>
+    <li class="ml-10 transition hover:text-gray-300">
+      <a routerLink="/restaurants">Explorar</a>
+    </li>
+    <li class="ml-10 transition group hover:text-gray-300">
+      <a routerLink="/infoRestaurants">
+        Reservoo
+        para restaurantes</a
+      >
+    </li>
+  </ul>
+  </nav>
+  <section class="w-full px-5 p-3">
+    <div class="min-h-[85vh] text-gray-300 justify-evenly p-3 flex md:mx-8 md:my-0 flex-col items-center border-green-700 border-2 rounded my-8 bg-gray-500">
+      <h1 class="text-3xl text-center">Restaurante: Únete a nuestra aplicación de reservas de restaurantes y llega a más clientes: Tasas de gestión y mantenimiento de 15€ al mes</h1>
+      <br>
+      <p class="text-2xl text-center mx-10">
+        En nuestra aplicación, nos esforzamos por proporcionar a nuestros usuarios una amplia selección de restaurantes para que puedan elegir. Para mantener nuestra plataforma actualizada y en funcionamiento, requerimos una inversión en gestión y mantenimiento. Es por ello que solicitamos a los restaurantes que se unan a nuestra aplicación, que paguen una tasa de gestión y mantenimiento.
+
+        El costo de registro para nuevos restaurantes es de 25€. Después del registro, el costo de la tasa es de 15€ al mes. Esta tasa nos permite seguir mejorando y actualizando la aplicación, garantizando así una experiencia de usuario de alta calidad. Además, al pagar esta tasa, su restaurante tendrá la oportunidad de ser visto por más clientes y de llegar a un público más amplio.
+
+        Es importante destacar que nuestra tasa es muy competitiva y ofrece una excelente relación calidad-precio en comparación con otros servicios similares. Si está interesado en unirse a nuestra aplicación, no dude en ponerse en contacto con nosotros para obtener más información sobre las tarifas y los servicios que ofrecemos.
+
+        Gracias por considerar unirse a nuestra plataforma. Esperamos trabajar juntos para ofrecer una experiencia gastronómica única a nuestros clientes.
+      </p>
+      <br>
+      <button (click)="registerRestaurant()" class="p-3 text-xl text-white float-right bg-emerald-600 rounded-xl transition ease-in-out hover:bg-cyan-500 md:order-2">
+        Haz click aquí para unirte
+      </button>
+    </div>
+  </section>
+</div>

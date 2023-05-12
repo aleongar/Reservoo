@@ -11,15 +11,12 @@ import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerMod
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
-import { ResenasComponent } from './resenas/resenas.component';
-
 @NgModule({
   declarations: [
     IndexComponent,
     UsersComponent,
     RestaurantesComponent,
     ReservasComponent,
-    ResenasComponent
   ],
   imports: [
     CommonModule,
