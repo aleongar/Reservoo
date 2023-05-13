@@ -27,4 +27,8 @@ class Restaurante extends Model
     public function comentarios(){
         return $this->hasMany(Comentario::class);
     }
+
+    public function restaurante_media(){
+        return $this->hasMany(Restaurante_media::class);
+    }
 }

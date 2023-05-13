@@ -14,7 +14,6 @@ export class MisRestaurantesComponent implements OnInit {
     this.resolver.data.subscribe(
       response => {
         this.user = response['user'];
-        console.log(response['user']  );
       }
     );
   }

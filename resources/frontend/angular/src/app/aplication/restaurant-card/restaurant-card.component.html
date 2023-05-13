@@ -1,12 +1,12 @@
 <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-[50rem] hover:bg-gray-100">
   <a href="#" class="contents">
-    <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="https://picsum.photos/200/300" alt="">
-    <div class="flex flex-col justify-between p-4 leading-normal">
+    <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" [src]="getImageURL()" alt="">
+    <div class="grow flex flex-col justify-between p-4 leading-normal">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">{{restaurante.nombre}}</h5>
-        <p class="mb-3 font-normal text-gray-700">{{restaurante.descripcion}}</p>
+        <p class="mb-3 font-normal text-gray-700">{{(restaurante.descripcion.length > 25)? (restaurante.descripcion | slice:0:35)+'...': restaurante.descripcion}}</p>
     </div>
   </a>
-  <a routerLink="editarRestaurante/{{restaurante.id}}" class="border-l-black border-l-2 contents bg-green-400 h-full">
+  <a routerLink="../modificarRestaurante/{{restaurante.id}}" class="border-l-black border-l-2 contents bg-green-400 h-full">
     <span class="bg-green-400 text-[4em] text-white">Editar</span>
   </a>
 </div>

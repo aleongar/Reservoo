@@ -27,6 +27,9 @@ export class RestaurantServiceService {
   postRestaurant(restaurantData: any){
     return this.http.post<any>(this.url, restaurantData);
   }
+  postWithFiles(restaurantData: any){
+    return this.http.post<any>(this.url + '/add', restaurantData);
+  }
 
   putRestaurant(id: any, restaurantData: any){
     return this.http.put<Restaurant>(this.url + '/' + id, restaurantData).pipe(
@@ -36,6 +39,12 @@ export class RestaurantServiceService {
 
   deleteRestaurant(id: any){
     return this.http.delete<Restaurant>(this.url + '/' + id).pipe(
+      map(res => res)
+    );
+  }
+
+  removeImage(id: any){
+    return this.http.delete<Restaurant>(this.url + '/removeImage/' + id).pipe(
       map(res => res)
     );
   }

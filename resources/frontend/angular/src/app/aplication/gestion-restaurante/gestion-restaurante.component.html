@@ -1,33 +1,60 @@
-<form class="pt-[15vh] md:pt-[10vh] pb-[100vh] bg-gray-200 p-3 flex justify-between">
-  <div class="w-[40%]">
-    <div>
-      <input class="mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="multiple_files" type="file" multiple>
+<form (submit)="sendRestaurante($event)" class="pt-[15vh] md:pt-[10vh] pb-[23.5vh] bg-gray-200 p-3 flex flex-col md:flex-row justify-between">
+  <div class="md:w-[40%]">
+    <div class="mb-6">
       <label>Horario Mañana:</label>
-      <div class="mb-6 flex flex-row justify-between">
-        <input type="time" class="w-[50%] border-black border-2 rounded" id="h_m_1" name="h_m_1">
+      <div class="mb-6 flex flex-row items-center justify-between">
+        <input type="time" class="w-[50%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="h_m_1" name="h_m_1">
         -
-        <input type="time" class="w-[50%] border-black border-2 rounded" id="h_m_2" name="h_m_2">
+        <input type="time" class="w-[50%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="h_m_2" name="h_m_2">
       </div>
       <label>Horario Tarde:</label>
-      <div class="mb-6 flex flex-row justify-between">
-        <input type="time" class="w-[50%] border-black border-2 rounded" id="h_t_1" name="h_t_1">
+      <div class="mb-6 flex flex-row items-center justify-between">
+        <input type="time" class="w-[50%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="h_t_1" name="h_t_1">
         -
-        <input type="time" class="w-[50%] border-black border-2 rounded" id="h_t_2" name="h_t_2">
+        <input type="time" class="w-[50%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="h_t_2" name="h_t_2">
       </div>
+      <input accept="image/*" class="mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="multiple_files" type="file" multiple>
     </div>
+    <div>
+      <table class="w-full text-sm text-left text-gray-500 border border-gray-300">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" scope="col" class="px-6 py-3">
+              Imagen
+            </th>
+            <th scope="col" class="px-6 py-3">
+              &nbsp;
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let media of filterImages()">
+            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <img [src]="getImage(media)" alt="imagen">
+            </td>
+            <td class="text-red-800 text-xl"><a (click)="removeImage(media.id)">&times;</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
-  <div class="w-[55%]">
+  <div class="md:w-[55%]">
     <div class="mb-6">
       <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
       <input type="text" id="nombre" name="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
     </div>
     <div class="mb-6">
       <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Ubicación</label>
-      <input type="text" id="dirección" name="dirección" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+      <input type="text" id="direccion" name="direccion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
     </div>
     <div class="mb-6">
       <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Descripción</label>
-      <textarea id="descripcion" name="descripcion" rows="3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></textarea>
+      <textarea id="descripcion" name="descripcion" rows="5" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></textarea>
+    </div>
+    <div class="mb-6">
+      <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Aforo</label>
+      <input type="number" min="1" id="aforo" name="aforo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
     </div>
     <div class="mb-6">
       <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Carta</label>
@@ -40,11 +67,17 @@
           </label>
       </div>
     </div>
-    <div *ngIf="cardUpload" class="mb-6">
-      <input type="text" name="carta" id="carta">
-    </div>
     <div *ngIf="!cardUpload" class="mb-6">
-      <input type="file" name="carta" id="carta">
+      <input placeholder="url de la carta" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" name="carta" id="carta">
+    </div>
+    <div *ngIf="cardUpload" class="mb-6">
+      <input accept="application/pdf" type="file" name="carta" id="carta">
+    </div>
+
+    <div class="mb-6">
+      <button class="cursor-pointer p-3 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">
+        Añadir
+      </button>
     </div>
   </div>
 </form>

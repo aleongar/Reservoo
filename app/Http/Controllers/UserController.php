@@ -48,7 +48,11 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        return User::where('id', $id)->with('restaurantes')->first();
+        $user = User::where('id', $id)->with('restaurantes')->first();
+        foreach($user->restaurantes as $restaurante){
+            $restaurante->restaurante_media = $restaurante->restaurante_media;
+        }
+        return $user;
     }
 
     public function getUserRestaurantsIDs(string $id){

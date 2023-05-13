@@ -29,6 +29,8 @@ Route::post('login', [LoginController::class, 'login']);
 Route::get('users/emp', [UserController::class, 'getEmpresarios']);
 Route::get('users/rest/{id}', [UserController::class, 'getUserRestaurantsIDs']);
 Route::apiResource('users', UserController::class);
+Route::post('restaurants/add', [RestauranteController::class, 'storeWithFiles']);
+Route::delete('restaurants/removeImage/{id}', [RestauranteController::class, 'removeImage']);
 Route::apiResource('restaurants', RestauranteController::class);
 Route::put('reservations/{id}/confirmation', [ReservasController::class, 'confirmation']);
 Route::get('reservations/rest/{restaurante}/{dia}', [ReservasController::class, 'getReservasEnDiaRestaurante']);
