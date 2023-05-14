@@ -33,6 +33,7 @@ class="fixed flex-wrap text-gray-100 text-[1.15em] w-full top-0 left-0 z-20 bg-b
   <a
   *ngIf="isLoggedIn()"
   class="p-3 float-right bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500 md:order-1"
+  routerLink="gestionUsuario"
   >Mi perfil</a>
   <a
   (click)="logOut()"
@@ -51,6 +52,11 @@ class="fixed flex-wrap text-gray-100 text-[1.15em] w-full top-0 left-0 z-20 bg-b
     <a routerLink="infoRestaurants">
       Reservoo
       para restaurantes</a
+    >
+  </li>
+  <li class="ml-10 transition group hover:text-gray-300">
+    <a *ngIf="isRestaurant()" routerLink="misRestaurantes">
+      Mis restaurantes</a
     >
   </li>
 </ul>

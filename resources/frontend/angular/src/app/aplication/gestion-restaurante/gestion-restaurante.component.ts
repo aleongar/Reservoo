@@ -63,6 +63,7 @@ export class GestionRestauranteComponent implements OnInit{
         }
       }
     );
+    window.location.reload();
   }
 
   sendRestaurante(event: any){

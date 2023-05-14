@@ -37,7 +37,7 @@ export class RestaurantServiceService {
     );
   }
 
-  putWithFiles(id: string, restaurantData: any){ //🔫🔫
+  putWithFiles(id: string, restaurantData: any){
     restaurantData.append('id', id);
     return this.http.post<any>(this.url + '/add', restaurantData).pipe(
       map((res) => res)

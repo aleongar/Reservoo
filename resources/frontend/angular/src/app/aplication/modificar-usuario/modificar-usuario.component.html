@@ -1,0 +1,27 @@
+<form class="pt-[15vh] md:pt-[10vh] pb-[23.5vh] bg-gray-200" (submit)="enviarFormulario($event)">
+  <div class=" p-3 flex flex-col md:flex-row justify-around">
+    <div class="mb-6">
+      <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
+      <input [value]="stringify(user.name)" type="text" id="name" name="name" class="w-full md:w-[20em] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+    </div>
+    <div class="mb-6">
+      <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+      <input [value]="stringify(user.email)" type="email" id="email" name="email" class="w-full md:w-[20em] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+    </div>
+    <div class="mb-6">
+      <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Contraseña</label>
+      <input [value]="pass" type="password" id="password" name="password" class="w-full md:w-[20em] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+    </div>
+    <div class="mb-6">
+      <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Confirmar</label>
+      <input [value]="confirm" type="password" id="confirm" name="confirm" class="w-full md:w-[20em] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+    </div>
+  </div>
+  <div>
+    <div id="error" class="mx-3 text-red-700"><!-- inner text --></div>
+    <button type="submit" class="p-3 float-right bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">Enviar</button>
+  </div>
+</form>
+<div class="flex justify-center pt-[3vh] md:pt-[1vh] pb-[23.5vh] bg-gray-200">
+  <input type="text" id="token" name="token" class="mx-6 w-full md:w-[25em] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" readonly> <button (click)="verToken()" class="p-3 float-right bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">Ver token</button>
+</div>

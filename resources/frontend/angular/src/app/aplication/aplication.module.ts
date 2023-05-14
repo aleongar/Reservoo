@@ -7,6 +7,9 @@ import { IndexComponent } from './index/index.component';
 import { RestaurantCardComponent } from './restaurant-card/restaurant-card.component';
 import { NavComponent } from './nav/nav.component';
 import { GestionRestauranteComponent } from './gestion-restaurante/gestion-restaurante.component';
+import { GestionUsuarioComponent } from './gestion-usuario/gestion-usuario.component';
+import { ModificarUsuarioComponent } from './modificar-usuario/modificar-usuario.component';
+import { MisReservasComponent } from './mis-reservas/mis-reservas.component';
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import { GestionRestauranteComponent } from './gestion-restaurante/gestion-resta
     IndexComponent,
     RestaurantCardComponent,
     NavComponent,
-    GestionRestauranteComponent
+    GestionRestauranteComponent,
+    GestionUsuarioComponent,
+    ModificarUsuarioComponent,
+    MisReservasComponent
   ],
   imports: [
     CommonModule,

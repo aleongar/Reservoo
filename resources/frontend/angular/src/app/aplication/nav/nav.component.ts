@@ -33,4 +33,8 @@ export class NavComponent {
     this.router.navigate(['/login']);
     window.location.reload();
   }
+
+  isRestaurant(){
+    return localStorage.getItem('rol') == '3';
+  }
 }

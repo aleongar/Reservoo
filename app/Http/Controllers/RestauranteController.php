@@ -65,7 +65,7 @@ class RestauranteController extends Controller
             $media->restaurante_id = $restaurante->id;
             $media->save();
         }
-        if($request->has('carta') && !empty($request->carta)){ //woof woof 🐶🐶
+        if($request->has('carta') && !empty($request->carta)){
             $media = new Restaurante_media();
             if($request->online == '1'){
                 $carta = $request->carta;
