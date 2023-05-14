@@ -16,7 +16,7 @@
       <input accept="image/*" class="mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="multiple_files" type="file" multiple>
     </div>
     <div>
-      <table class="w-full text-sm text-left text-gray-500 border border-gray-300">
+      <table *ngIf="editing" class="w-full text-sm text-left text-gray-500 border border-gray-300">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" scope="col" class="px-6 py-3">
@@ -32,13 +32,13 @@
             <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
               <img [src]="getImage(media)" alt="imagen">
             </td>
-            <td class="text-red-800 text-xl"><a (click)="removeImage(media.id)">&times;</a></td>
+            <td class="text-red-800 text-xl"><a class="cursor-pointer" (click)="removeImage(media.id, $event)">&times;</a></td>
           </tr>
         </tbody>
       </table>
     </div>
-
   </div>
+  <!-- sep -->
   <div class="md:w-[55%]">
     <div class="mb-6">
       <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
@@ -76,7 +76,7 @@
 
     <div class="mb-6">
       <button class="cursor-pointer p-3 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">
-        Añadir
+        {{editing ? 'Editar' :'Añadir'}}
       </button>
     </div>
   </div>

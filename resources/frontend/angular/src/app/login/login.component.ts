@@ -23,6 +23,12 @@ export class LoginComponent implements OnInit{
         document.getElementById('info')!.style.display = 'block';
       }
     })
+    if(sessionStorage.getItem('info') != 'null'){
+      document.getElementById('info')!.innerText = sessionStorage.getItem('info') ?? '';
+      document.getElementById('info')!.classList.add('text-red-600');
+      document.getElementById('info')!.style.display = 'block';
+      sessionStorage.setItem('info', 'null');
+    }
   }
   protected loginData = {
     email: '',

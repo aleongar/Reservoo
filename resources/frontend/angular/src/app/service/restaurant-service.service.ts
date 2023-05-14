@@ -37,6 +37,13 @@ export class RestaurantServiceService {
     );
   }
 
+  putWithFiles(id: string, restaurantData: any){ //🔫🔫
+    restaurantData.append('id', id);
+    return this.http.post<any>(this.url + '/add', restaurantData).pipe(
+      map((res) => res)
+    );
+  }
+
   deleteRestaurant(id: any){
     return this.http.delete<Restaurant>(this.url + '/' + id).pipe(
       map(res => res)
@@ -44,7 +51,7 @@ export class RestaurantServiceService {
   }
 
   removeImage(id: any){
-    return this.http.delete<Restaurant>(this.url + '/removeImage/' + id).pipe(
+    return this.http.delete<any>(this.url + '/removeImage/' + id).pipe(
       map(res => res)
     );
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Restaurant } from 'src/app/interfaces/restaurant.inteface';
 import { RestaurantServiceService } from 'src/app/service/restaurant-service.service';
 
@@ -10,7 +10,7 @@ import { RestaurantServiceService } from 'src/app/service/restaurant-service.ser
 })
 export class GestionRestauranteComponent implements OnInit{
   editing: boolean = false;
-  constructor(private route: ActivatedRoute, private restaurantSevice: RestaurantServiceService){
+  constructor(private route: ActivatedRoute, private restaurantSevice: RestaurantServiceService, private router: Router){
 
   }
   cardUpload = false;
@@ -22,11 +22,31 @@ export class GestionRestauranteComponent implements OnInit{
       this.editing = true;
       this.route.data.subscribe(data => {
         this.restaurant = data['restaurante'];
-
+        this.preloadData();
       })
     }
     console.log(this.editing);
   }
+
+  preloadData(){
+    let rest = this.restaurant; //abreviate variable
+    let [h_m_1, h_m_2] = rest.h_manana.split('-');
+    let [h_t_1, h_t_2] = rest.h_tarde.split('-');
+
+    $('#h_m_1').val(h_m_1);
+    $('#h_t_1').val(h_t_1);
+    $('#h_m_2').val(h_m_2);
+    $('#h_t_2').val(h_t_2);
+
+    $('#nombre').val(String(rest.nombre));
+    $('#direccion').val(String(rest.direccion));
+    $('#descripcion').val(String(rest.descripcion));
+    $('#aforo').val(String(rest.aforo));
+    if(!rest.restaurante_media.filter((media)=>{return media.format == 'pdf'})[0].online){
+      $('#carta').val(rest.restaurante_media.filter((media)=>{return media.format == 'pdf'})[0].filename);
+    }
+  }
+
   changeMethod(e: Event){
     this.cardUpload = $('input[name="online"]:checked').val() == 1;
   }
@@ -35,14 +55,20 @@ export class GestionRestauranteComponent implements OnInit{
     return this.restaurant.restaurante_media.filter((media) => {return media.format != 'pdf'});
   }
 
-  removeImage(id: string){
-    this.restaurantSevice.removeImage(id);
+  removeImage(id: string, event: any){
+    this.restaurantSevice.removeImage(id).subscribe(
+      (res) =>{
+        if(res.result == 'success'){
+          console.log(event.currentTarget)
+        }
+      }
+    );
   }
 
   sendRestaurante(event: any){
     event.preventDefault();
     if(this.editing){
-      console.log('hola');
+      this.putRestaurant(event);
 
     }else{
       this.postRestaurant(event);
@@ -53,20 +79,20 @@ export class GestionRestauranteComponent implements OnInit{
     return `../../storage/uploads/user-${this.restaurant.user_id}/${media.filename}`;
   }
 
-  postRestaurant(event: any){
-    const h_manana = `${event.target.h_m_1.value}-${event.target.h_m_2.value}`;
-    const h_tarde = `${event.target.h_t_1.value}-${event.target.h_t_2.value}`;
+  prepareData(event: any){
+    const h_manana = String(`${event.target.h_m_1.value}-${event.target.h_m_2.value}`);
+    const h_tarde = String(`${event.target.h_t_1.value}-${event.target.h_t_2.value}`);
     const fotos = event.target.multiple_files.files;
-    const nombre = event.target.nombre.value;
-    const direccion = event.target.direccion.value;
-    const aforo = event.target.aforo.value;
-    const descripcion = event.target.descripcion.value;
-    const online = event.target.online.value;
+    const nombre = String(event.target.nombre.value);
+    const direccion = String(event.target.direccion.value);
+    const aforo = String(event.target.aforo.value);
+    const descripcion = String(event.target.descripcion.value);
+    const online = String(event.target.online.value);
     let carta;
     if(online == '1'){
       carta = event.target.carta.files[0];
     }else{
-      carta = event.target.carta.value;
+      carta = String(event.target.carta.value);
     }
     const formdata = new FormData();
 
@@ -85,9 +111,19 @@ export class GestionRestauranteComponent implements OnInit{
     formdata.append('online', online);
     formdata.append('carta', carta);
     formdata.append('user', localStorage.getItem('id') ?? '');
+    console.log(formdata);
+    return formdata;
+  }
 
-    this.restaurantSevice.postWithFiles(formdata).subscribe(
-      (res) => {console.log(res);}
+  postRestaurant(event: any){
+    this.restaurantSevice.postWithFiles(this.prepareData(event)).subscribe(
+      (res) => {console.log(res); this.router.navigate(['app/misRestaurantes']);}
+    );
+  }
+
+  putRestaurant(event: any){
+    this.restaurantSevice.putWithFiles(this.restaurant.id, this.prepareData(event)).subscribe(
+      (res) => {console.log(res);this.router.navigate(['app/misRestaurantes']);}
     );
   }
 }

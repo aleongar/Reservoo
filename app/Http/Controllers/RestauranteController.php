@@ -43,6 +43,8 @@ class RestauranteController extends Controller
     public function storeWithFiles(Request $request)
     {
         $restaurante = new Restaurante();
+        if($request->has('id'))
+            $restaurante = Restaurante::findOrFail($request->id); //nah, solo nuestra cabeza funciona de forma diferente
         $restaurante->nombre = $request->nombre;
         $restaurante->descripcion = $request->descripcion;
         $restaurante->aforo = $request->aforo;
@@ -63,23 +65,23 @@ class RestauranteController extends Controller
             $media->restaurante_id = $restaurante->id;
             $media->save();
         }
-
-        $media = new Restaurante_media();
-        if($request->online == '1'){
-            $carta = $request->carta;
-            $name = 'carta-'.fake()->uuid().'.'. $carta->extension();
-            Storage::putFileAs('public/uploads/user-'.$request->user.'/', $carta, $name);
-            $media->filename = $name;
-            $media->format = $carta->extension();
-            $media->online = '0';
-        }else{
-            $media->filename = $request->carta;
-            $media->format = 'pdf';
-            $media->online = '1';
+        if($request->has('carta') && !empty($request->carta)){ //woof woof 🐶🐶
+            $media = new Restaurante_media();
+            if($request->online == '1'){
+                $carta = $request->carta;
+                $name = 'carta-'.fake()->uuid().'.'. $carta->extension();
+                Storage::putFileAs('public/uploads/user-'.$request->user.'/', $carta, $name);
+                $media->filename = $name;
+                $media->format = $carta->extension();
+                $media->online = '0';
+            }else{
+                $media->filename = $request->carta;
+                $media->format = 'pdf';
+                $media->online = '1';
+            }
+            $media->restaurante_id = $restaurante->id;
+            $media->save();
         }
-        $media->restaurante_id = $restaurante->id;
-        $media->online = $request->online;
-        $media->save();
         return $restaurante;
     }
 
@@ -108,6 +110,46 @@ class RestauranteController extends Controller
         return $restaurante;
     }
 
+    public function updateWithFiles(Request $request, string $id){
+        $restaurante = Restaurante::findOrFail($id);
+        $restaurante->nombre = $request->nombre;
+        $restaurante->descripcion = $request->descripcion;
+        $restaurante->aforo = $request->aforo;
+        $restaurante->h_manana = $request->h_manana;
+        $restaurante->h_tarde = $request->h_tarde;
+        $restaurante->direccion = $request->direccion;
+        $restaurante->user_id = $request->user;
+        $restaurante->save();
+        for($i = 0; $i < $request->cantidad_fotos; $i++){
+            $foto = $request->{'foto'.$i};
+            $name = fake()->uuid() .'.'. $foto->extension();
+            Storage::putFileAs('public/uploads/user-'.$request->user.'/', $foto, $name);
+            $media = new Restaurante_media();
+            $media->filename = $name;
+            $media->format = $foto->extension();
+            $media->online = 0;
+            $media->restaurante_id = $restaurante->id;
+            $media->save();
+        }
+
+        $media = new Restaurante_media();
+        if($request->online == '1'){
+            $carta = $request->carta;
+            $name = 'carta-'.fake()->uuid().'.'. $carta->extension();
+            Storage::putFileAs('public/uploads/user-'.$request->user.'/', $carta, $name);
+            $media->filename = $name;
+            $media->format = $carta->extension();
+            $media->online = '0';
+        }else{
+            $media->filename = $request->carta;
+            $media->format = 'pdf';
+            $media->online = '1';
+        }
+        $media->restaurante_id = $restaurante->id;
+        $media->save();
+        return $restaurante;
+    }
+
     /**
      * Remove the specified resource from storage.
      */
@@ -120,7 +162,7 @@ class RestauranteController extends Controller
 
     public function removeImage(string $id){
         $media = Restaurante_media::findOrFail($id);
-        Storage::delete('public/uploads/user-'.$media->restaurante()->user()->id.'/'.$media->filename);
+        Storage::delete('public/uploads/user-'.$media->restaurante->user_id.'/'.$media->filename);
         $media->delete();
         return ['result' => 'success'];
     }

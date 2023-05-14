@@ -30,6 +30,8 @@ Route::get('users/emp', [UserController::class, 'getEmpresarios']);
 Route::get('users/rest/{id}', [UserController::class, 'getUserRestaurantsIDs']);
 Route::apiResource('users', UserController::class);
 Route::post('restaurants/add', [RestauranteController::class, 'storeWithFiles']);
+Route::put('restaurants/{id}/editing', [RestauranteController::class, 'updateWithFiles']);
+Route::patch('restaurants/{id}editing', [RestauranteController::class, 'updateWithFiles']);
 Route::delete('restaurants/removeImage/{id}', [RestauranteController::class, 'removeImage']);
 Route::apiResource('restaurants', RestauranteController::class);
 Route::put('reservations/{id}/confirmation', [ReservasController::class, 'confirmation']);
