@@ -18,6 +18,29 @@ export class ReservationsServiceService {
     );
   }
 
+  getReservationsForUserDay(userId: string, date: string){
+    return this.http.get<Reservation[]>(this.url+ '/user/'+ userId +'/'+date).pipe(
+      map((res => res))
+    );
+  }
+
+  getReservationsForRestaurantDay(restaurantId: string, date: string){
+    return this.http.get<Reservation[]>(this.url+ '/rest/'+ restaurantId +'/'+date).pipe(
+      map((res => res))
+    );
+  }
+  getReservationsForRestaurant(restaurantId: string){
+    return this.http.get<Reservation[]>(this.url+ '/rest/'+ restaurantId ).pipe(
+      map((res => res))
+    );
+  }
+
+  getReservationsForUser(userId: string){
+    return this.http.get<Reservation[]>(this.url+ '/user/'+ 21).pipe(
+      map((res => res))
+    );
+  }
+
   postReservation(userData: any){
     return this.http.post<any>(this.url + '/', userData);
   }

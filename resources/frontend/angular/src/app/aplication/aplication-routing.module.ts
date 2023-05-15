@@ -8,15 +8,18 @@ import { RestaurantResolverService } from '../resolvers/restaurant-resolver.serv
 import { GestionUsuarioComponent } from './gestion-usuario/gestion-usuario.component';
 import { ModificarUsuarioComponent } from './modificar-usuario/modificar-usuario.component';
 import { MisReservasComponent } from './mis-reservas/mis-reservas.component';
+import { ReservasResolverService } from '../resolvers/reservas-resolver.service';
+import { ReservasRestaurantesResolverService } from '../resolvers/reservas-restaurantes-resolver.service';
 
 const routes: Routes = [
   {path: '', component: IndexComponent, children: [
     {path: 'misRestaurantes', component: MisRestaurantesComponent, resolve: {user: UserResolverService}},
+    {path: 'reservasRestaurantes/:id', component: MisReservasComponent, resolve: {reservations: ReservasRestaurantesResolverService}},
     {path: 'anadirRestaurante', component: GestionRestauranteComponent},
     {path: 'modificarRestaurante/:id', component: GestionRestauranteComponent, resolve: {restaurante: RestaurantResolverService}},
     {path: 'gestionUsuario', component: GestionUsuarioComponent, children: [
       {path: 'modificarUsuario', component: ModificarUsuarioComponent, resolve: {user: UserResolverService}},
-      {path: 'misReservas', component: MisReservasComponent, resolve: {user: UserResolverService}}
+      {path: 'misReservas', component: MisReservasComponent, resolve: {reservations: ReservasResolverService}}
     ]}
   ]}
 ];

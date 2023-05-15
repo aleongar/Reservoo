@@ -37,6 +37,8 @@ Route::apiResource('restaurants', RestauranteController::class);
 Route::put('reservations/{id}/confirmation', [ReservasController::class, 'confirmation']);
 Route::get('reservations/rest/{restaurante}/{dia}', [ReservasController::class, 'getReservasEnDiaRestaurante']);
 Route::get('reservations/user/{usuario}/{dia}', [ReservasController::class, 'getReservasEnDiaUsuario']);
+Route::get('reservations/user/{usuario}', [ReservasController::class, 'getReservasEnUsuario']);
+Route::get('reservations/rest/{restuarante}', [ReservasController::class, 'getReservasEnRestaurante']);
 Route::apiResource('reservations', ReservasController::class);
 Route::apiResource('resenas', ResenasController::class);
 Route::apiResource('coments', ComentariosController::class);

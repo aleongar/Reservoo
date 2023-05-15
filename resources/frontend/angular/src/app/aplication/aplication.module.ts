@@ -10,6 +10,7 @@ import { GestionRestauranteComponent } from './gestion-restaurante/gestion-resta
 import { GestionUsuarioComponent } from './gestion-usuario/gestion-usuario.component';
 import { ModificarUsuarioComponent } from './modificar-usuario/modificar-usuario.component';
 import { MisReservasComponent } from './mis-reservas/mis-reservas.component';
+import { ReservationCardComponent } from './reservation-card/reservation-card.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MisReservasComponent } from './mis-reservas/mis-reservas.component';
     GestionRestauranteComponent,
     GestionUsuarioComponent,
     ModificarUsuarioComponent,
-    MisReservasComponent
+    MisReservasComponent,
+    ReservationCardComponent
   ],
   imports: [
     CommonModule,

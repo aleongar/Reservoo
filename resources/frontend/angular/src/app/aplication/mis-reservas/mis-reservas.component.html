@@ -1,1 +1,6 @@
-<p>mis-reservas works!</p>
+<div class="pt-[15vh] md:pt-[10vh] pb-[23.5vh] bg-gray-200 p-3 flex flex-col items-center">
+  <app-reservation-card *ngFor="let reservation of reservations" [canEdit]="canConfirm" [reservation]="reservation"></app-reservation-card>
+  <div class="p-[19.5em]" *ngIf="reservations.length == 0">
+    <p class="text-3xl text-cursive">No hay reservas...</p>
+  </div>
+</div>

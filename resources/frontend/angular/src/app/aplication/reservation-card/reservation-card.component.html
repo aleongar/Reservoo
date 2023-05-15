@@ -1,0 +1,7 @@
+
+<div [style]="reservation.aprovada ? 'background-color: #bdecb6' : 'background-color: #FFFDD0' " class="block max-w-sm bg-white p-6 mb-3 border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{canEdit ? reservation.user.name : reservation.restaurante.nombre}}</h5>
+  <p class="font-normal text-gray-700">Fecha y hora: {{reservation.h_reserva | date: 'dd/MM/yyyy H:mm'}}</p>
+  <p>{{reservation.aprovada ? 'Aprobada' : 'No aprobada'}} <button id="aprobarReserva{{reservation.id}}" (click)="aprobarReserva()" [style]="!canEdit || reservation.aprovada ? 'display: none;' : ''" class="p-3 float-right bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">Aprobar</button></p>
+</div>
+

@@ -67,6 +67,24 @@ class ReservasController extends Controller
         ->get();
     }
 
+    public function getReservasEnUsuario(string $usuario){
+        return Reserva
+        ::where('user_id', $usuario)
+        ->orderBy('h_reserva', 'desc')
+        ->with('user')
+        ->with('restaurante')
+        ->get();
+    }
+
+    public function getReservasEnRestaurante(string $restaurante){
+        return Reserva
+        ::where('restaurante_id', $restaurante)
+        ->orderBy('h_reserva', 'desc')
+        ->with('user')
+        ->with('restaurante')
+        ->get();
+    }
+
     /**
      * Update the specified resource in storage.
      */

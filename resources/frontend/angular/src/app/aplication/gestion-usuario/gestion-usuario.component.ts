@@ -7,18 +7,7 @@ import { User } from 'src/app/interfaces/user.interface';
   templateUrl: './gestion-usuario.component.html',
   styleUrls: ['./gestion-usuario.component.scss']
 })
-export class GestionUsuarioComponent implements OnInit {
+export class GestionUsuarioComponent {
   constructor(private route: ActivatedRoute, private router: Router){
-    this.router.navigate(['modificarUsuario']);
-  }
-  user!: User;
-
-  ngOnInit(): void {
-    this.route.data.subscribe(
-      response => {
-        this.user = response['user'];
-
-      }
-    );
   }
 }
