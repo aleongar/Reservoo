@@ -23,6 +23,14 @@ class RestauranteController extends Controller
         return Restaurante::with('user')->with('restaurante_media')->get();
     }
 
+    public function getRestaurantsPaginated(string $page){
+        return Restaurante::with('restaurante_media')->limit(10)->offset(($page-1)*10)->get();
+    }
+
+    public function searchRestaurantsPaginated(Request $request, string $page){
+        return Restaurante::where('nombre', 'like', '%'.$request->name.'%')->with('restaurante_media')->limit(10)->offset(($page-1)*10)->get();
+    }
+
     /**
      * Store a newly created resource in storage.
      */

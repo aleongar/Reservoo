@@ -29,6 +29,8 @@ Route::post('login', [LoginController::class, 'login']);
 Route::get('users/emp', [UserController::class, 'getEmpresarios']);
 Route::get('users/rest/{id}', [UserController::class, 'getUserRestaurantsIDs']);
 Route::apiResource('users', UserController::class);
+Route::get('restaurants/page/{page}', [RestauranteController::class, 'getRestaurantsPaginated']);
+Route::post('restaurants/search/{page}', [RestauranteController::class, 'searchRestaurantsPaginated']);
 Route::post('restaurants/add', [RestauranteController::class, 'storeWithFiles']);
 Route::put('restaurants/{id}/editing', [RestauranteController::class, 'updateWithFiles']);
 Route::patch('restaurants/{id}editing', [RestauranteController::class, 'updateWithFiles']);
