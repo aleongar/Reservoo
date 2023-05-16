@@ -11,6 +11,8 @@ import { GestionUsuarioComponent } from './gestion-usuario/gestion-usuario.compo
 import { ModificarUsuarioComponent } from './modificar-usuario/modificar-usuario.component';
 import { MisReservasComponent } from './mis-reservas/mis-reservas.component';
 import { ReservationCardComponent } from './reservation-card/reservation-card.component';
+import { ExploreComponent } from './explore/explore.component';
+import { ExploreCardsComponent } from './explore-cards/explore-cards.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { ReservationCardComponent } from './reservation-card/reservation-card.co
     GestionUsuarioComponent,
     ModificarUsuarioComponent,
     MisReservasComponent,
-    ReservationCardComponent
+    ReservationCardComponent,
+    ExploreComponent,
+    ExploreCardsComponent
   ],
   imports: [
     CommonModule,

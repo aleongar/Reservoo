@@ -24,6 +24,18 @@ export class RestaurantServiceService {
     );
   }
 
+  getRestaurantsPaginated(page: number){
+    return this.http.get<Restaurant[]>(this.url + '/page/' + page).pipe(
+      map((response => response))
+    );
+  }
+
+  searchRestaurantsPaginated(name: string, page: number){
+    return this.http.post<Restaurant[]>(this.url + '/search/' + page, {name: name}).pipe(
+      map((response => response))
+    );
+  }
+
   postRestaurant(restaurantData: any){
     return this.http.post<any>(this.url, restaurantData);
   }

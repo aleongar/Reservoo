@@ -10,6 +10,8 @@ import { ModificarUsuarioComponent } from './modificar-usuario/modificar-usuario
 import { MisReservasComponent } from './mis-reservas/mis-reservas.component';
 import { ReservasResolverService } from '../resolvers/reservas-resolver.service';
 import { ReservasRestaurantesResolverService } from '../resolvers/reservas-restaurantes-resolver.service';
+import { ExploreComponent } from './explore/explore.component';
+import { RestaurantExploreService } from '../restaurant-explore.service';
 
 const routes: Routes = [
   {path: '', component: IndexComponent, children: [
@@ -20,7 +22,8 @@ const routes: Routes = [
     {path: 'gestionUsuario', component: GestionUsuarioComponent, children: [
       {path: 'modificarUsuario', component: ModificarUsuarioComponent, resolve: {user: UserResolverService}},
       {path: 'misReservas', component: MisReservasComponent, resolve: {reservations: ReservasResolverService}}
-    ]}
+    ]},
+    {path: 'explore', component: ExploreComponent, resolve: {restaurants: RestaurantExploreService}}
   ]}
 ];
 
