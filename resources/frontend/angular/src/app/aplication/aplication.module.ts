@@ -13,6 +13,7 @@ import { MisReservasComponent } from './mis-reservas/mis-reservas.component';
 import { ReservationCardComponent } from './reservation-card/reservation-card.component';
 import { ExploreComponent } from './explore/explore.component';
 import { ExploreCardsComponent } from './explore-cards/explore-cards.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ExploreCardsComponent } from './explore-cards/explore-cards.component';
     MisReservasComponent,
     ReservationCardComponent,
     ExploreComponent,
-    ExploreCardsComponent
+    ExploreCardsComponent,
+    RestaurantComponent
   ],
   imports: [
     CommonModule,

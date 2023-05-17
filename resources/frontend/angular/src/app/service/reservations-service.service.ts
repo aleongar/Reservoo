@@ -36,7 +36,7 @@ export class ReservationsServiceService {
   }
 
   getReservationsForUser(userId: string){
-    return this.http.get<Reservation[]>(this.url+ '/user/'+ 21).pipe(
+    return this.http.get<Reservation[]>(this.url+ '/user/'+ userId).pipe(
       map((res => res))
     );
   }

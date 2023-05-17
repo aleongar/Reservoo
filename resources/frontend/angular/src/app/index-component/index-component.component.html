@@ -28,15 +28,25 @@ class="fixed flex-wrap text-gray-100 text-[1.15em] w-full top-0 left-0 z-20 bg-b
 <a
   routerLink="login"
   class=" p-3 float-right bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500 md:order-2"
-  >Iniciar Sesión</a
->
+  *ngIf="!isLoggedIn()"
+  >Iniciar Sesión</a>
+  <a
+  *ngIf="isLoggedIn()"
+  class="p-3 float-right bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500 md:order-1"
+  routerLink="gestionUsuario/modificarUsuario"
+  >Mi perfil</a>
+  <a
+  (click)="logOut()"
+  class="p-3 float-right bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500 md:order-3 "
+  *ngIf="isLoggedIn()"
+  >Cerrar Sesión</a>
 <div class="break md:hidden"></div>
 <ul id="nav-content" class="p-3 hidden md:flex flex-row items-center md:order-1">
   <li class="ml-10 transition hover:text-gray-300">
     <a href="#">Inicio</a>
   </li>
   <li class="ml-10 transition hover:text-gray-300">
-    <a routerLink="/restaurants">Explorar</a>
+    <a routerLink="app/explore">Explorar</a>
   </li>
   <li class="ml-10 transition group hover:text-gray-300">
     <a routerLink="/infoRestaurants">

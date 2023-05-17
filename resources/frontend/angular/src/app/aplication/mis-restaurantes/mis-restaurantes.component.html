@@ -3,8 +3,8 @@
   <div class="p-[20vh] flex flex-wrap content-center justify-center">
     <div class="bg-green-400/75 rounded-lg text-[4em] text-white header-font"> Hola, {{user.name}} </div>
   </div>
-  <div class="bg-white grow">
-    <div *ngIf="user.restaurantes.length == 0" class="italic">
+  <div class="bg-white grow h-[50vh]">
+    <div  *ngIf="user.restaurantes.length == 0" class="italic">
       <div class="flex flex-row justify-between">
         <h3 class="text-center text-[2em]">No hay restaurantes...</h3>
         <a routerLink="../anadirRestaurante" class="p-3 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">

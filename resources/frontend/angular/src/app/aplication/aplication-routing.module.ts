@@ -12,6 +12,8 @@ import { ReservasResolverService } from '../resolvers/reservas-resolver.service'
 import { ReservasRestaurantesResolverService } from '../resolvers/reservas-restaurantes-resolver.service';
 import { ExploreComponent } from './explore/explore.component';
 import { RestaurantExploreService } from '../restaurant-explore.service';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { RestaurantByIdResolverService } from '../resolvers/restaurant-by-id-resolver.service';
 
 const routes: Routes = [
   {path: '', component: IndexComponent, children: [
@@ -23,7 +25,8 @@ const routes: Routes = [
       {path: 'modificarUsuario', component: ModificarUsuarioComponent, resolve: {user: UserResolverService}},
       {path: 'misReservas', component: MisReservasComponent, resolve: {reservations: ReservasResolverService}}
     ]},
-    {path: 'explore', component: ExploreComponent, resolve: {restaurants: RestaurantExploreService}}
+    {path: 'explore', component: ExploreComponent, resolve: {restaurants: RestaurantExploreService}},
+    {path: 'restaurant/:id', component: RestaurantComponent, resolve: {restaurant: RestaurantByIdResolverService}}
   ]}
 ];
 

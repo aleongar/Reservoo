@@ -1,0 +1,40 @@
+<div class="py-[19.5vh] px-3 flex items-center flex-col justify-between">
+  <h1 class="text-[4em] text-center pb-5">{{restaurante.nombre}}</h1>
+  <div class="flex flex-col w-full"><strong>Descripción: </strong><span class="overflow-hidden">{{restaurante.descripcion}}</span></div>
+  <div class="flex flex-col justify-between">
+    <div class="flex mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+      </svg>
+      {{restaurante.h_manana}}
+    </div>
+    <div class="flex mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+      </svg>
+      {{restaurante.h_tarde}}
+    </div>
+    <div class="flex mb-3 ">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+      </svg>
+      {{restaurante.direccion }}
+    </div>
+  </div>
+  <div class="flex my-3 p-3 justify-between border border-green-300 bg-white">
+    <p *ngIf="imageMedia.length == 0">Este restaurante no tiene fotos.</p>
+    <p class="border rounded mx-3" *ngFor="let media of imageMedia"><img [src]="getImage(media)" alt="..."></p>
+  </div>
+  <a target="_blank" class="p-3 border border-green-400 border-[3px] mb-3 rounded-xl transition ease-in-out hover:border-cyan-500" [href]="getPdf()">Ver carta</a>
+  <button *ngIf="isLoggedIn()" (click)="menuReserva = !menuReserva" class="p-3 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500 ">Reservar</button>
+  <button *ngIf="!isLoggedIn()" disabled class="p-3 bg-green-400 rounded-xl transition ease-in-out cursor-not-allowed">Inicia sesión para reservar</button>
+  <div *ngIf="menuReserva">
+  <form class="my-4 border flex flex-col" (submit)="sendReserva($event)">
+    <label for="reserva">Día y hora de la reserva</label>
+    <input class="rounded-xl" type="datetime-local" id="reserva" name="reserva">
+    <button type="submit" id="buttonsend" class="p-3 my-2 bg-green-700 rounded-xl transition ease-in-out hover:bg-cyan-500 disabled:bg-green-100">Enviar reserva</button>
+    <div id="info"></div>
+  </form>
+</div>
+</div>

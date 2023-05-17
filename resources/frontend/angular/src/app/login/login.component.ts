@@ -47,6 +47,9 @@ export class LoginComponent implements OnInit{
       if(localStorage.getItem('rol') === this.loginService.EMPRESA){
         this.router.navigate(['/app/misRestaurantes']);
       }
+      if(localStorage.getItem('rol') === this.loginService.CLIENTE){
+        this.router.navigate(['/app/explore']);
+      }
     },
     (error) => {
       if(error.status == 401){

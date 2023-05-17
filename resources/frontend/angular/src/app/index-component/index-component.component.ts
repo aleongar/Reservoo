@@ -18,4 +18,14 @@ export class IndexComponentComponent {
     }
     button?.setAttribute('aria-expanded', expanded == 'false' ? 'true' : 'false')
   }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('token') != undefined
+  }
+
+  logOut(){
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.reload();
+  }
 }
