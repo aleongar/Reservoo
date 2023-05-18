@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CommentServiceService {
 
-  private url = 'http://127.0.0.1:8000/api/coments'
+  private url = 'http://reservoo.com/api/coments'
 
   constructor(private http: HttpClient) { }
 
@@ -31,7 +31,7 @@ export class CommentServiceService {
   }
 
   deleteComment(id: string){
-    
+
     return this.http.delete(this.url+'/'+id);
   }
 }

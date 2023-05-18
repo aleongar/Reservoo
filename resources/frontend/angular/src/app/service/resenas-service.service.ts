@@ -8,7 +8,7 @@ import { Resenas } from '../interfaces/resenas.interface';
 })
 export class ResenasServiceService {
 
-  private url = 'http://127.0.0.1:8000/api/resenas' //TODO: cambiar cuando tal
+  private url = 'http://reservoo.com/api/resenas' //TODO: cambiar cuando tal
 
   constructor(private http: HttpClient) { }
 

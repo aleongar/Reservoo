@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ReservationsServiceService {
 
-  private url = 'http://127.0.0.1:8000/api/reservations' //TODO: cambiar cuando tal
+  private url = 'http://reservoo.com/api/reservations' //TODO: cambiar cuando tal
 
   constructor(private http: HttpClient) { }
 
@@ -42,7 +42,7 @@ export class ReservationsServiceService {
   }
 
   postReservation(userData: any){
-    return this.http.post<any>(this.url + '/', userData);
+    return this.http.post<any>(this.url, userData);
   }
 
   putReservation(id: string, userData: any){

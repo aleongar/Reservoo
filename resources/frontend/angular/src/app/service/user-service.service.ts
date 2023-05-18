@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserServiceService {
 
-  private url = 'http://127.0.0.1:8000/api/users' //TODO: cambiar cuando tal
+  private url = 'http://reservoo.com/api/users' //TODO: cambiar cuando tal
 
   constructor(private http: HttpClient) { }
 

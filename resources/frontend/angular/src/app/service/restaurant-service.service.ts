@@ -8,7 +8,7 @@ import { Restaurant } from '../interfaces/restaurant.inteface';
 })
 export class RestaurantServiceService {
 
-  private url = 'http://127.0.0.1:8000/api/restaurants' //TODO: cambiar cuando tal
+  private url = 'http://reservoo.com/api/restaurants' //TODO: cambiar cuando tal
 
   constructor(private http: HttpClient) { }
 

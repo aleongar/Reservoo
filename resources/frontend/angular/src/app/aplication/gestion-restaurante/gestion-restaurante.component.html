@@ -28,11 +28,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let media of filterImages()">
+          <tr *ngFor="let media of imageArray">
             <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
               <img [src]="getImage(media)" alt="imagen">
             </td>
-            <td class="text-red-800 text-xl"><a class="cursor-pointer"  (click)="removeImage(media.id, $event)">&times;</a></td>
+            <td class="text-red-800 text-xl"><a class="cursor-pointer"  (click)="removeImage(media.id)">&times;</a></td>
           </tr>
         </tbody>
       </table>

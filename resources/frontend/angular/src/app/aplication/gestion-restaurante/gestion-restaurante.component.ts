@@ -15,6 +15,7 @@ export class GestionRestauranteComponent implements OnInit{
   }
   cardUpload = false;
   restaurant!: Restaurant;
+  imageArray: any[] = [];
 
 
   ngOnInit(): void {
@@ -29,6 +30,7 @@ export class GestionRestauranteComponent implements OnInit{
   }
 
   preloadData(){
+    this.imageArray = this.filterImages();
     let rest = this.restaurant; //abreviate variable
     let [h_m_1, h_m_2] = rest.h_manana.split('-');
     let [h_t_1, h_t_2] = rest.h_tarde.split('-');
@@ -55,15 +57,18 @@ export class GestionRestauranteComponent implements OnInit{
     return this.restaurant.restaurante_media.filter((media) => {return media.format != 'pdf'});
   }
 
-  removeImage(id: string, event: any){
+  removeImage(id: string){
     this.restaurantSevice.removeImage(id).subscribe(
       (res) =>{
         if(res.result == 'success'){
-          console.log(event.currentTarget)
+          let imageIndex = this.imageArray.findIndex((image) => image.id == id)
+          if(imageIndex > -1){
+            this.imageArray.splice(imageIndex, 1);
+          }
         }
       }
     );
-    window.location.reload();
+
   }
 
   sendRestaurante(event: any){
@@ -112,7 +117,6 @@ export class GestionRestauranteComponent implements OnInit{
     formdata.append('online', online);
     formdata.append('carta', carta);
     formdata.append('user', localStorage.getItem('id') ?? '');
-    console.log(formdata);
     return formdata;
   }
 

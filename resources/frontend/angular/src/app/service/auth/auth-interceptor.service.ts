@@ -13,7 +13,7 @@ export class AuthInterceptorService implements HttpInterceptor{
   public ADMIN = '1';
   public CLIENTE = '2';
   public EMPRESA = '3';
-  private url = 'http://127.0.0.1:8000' //TODO: Cambiar cuando se pase a produccion
+  private url = 'http://reservoo.com' //TODO: Cambiar cuando se pase a produccion
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
