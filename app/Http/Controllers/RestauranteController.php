@@ -28,7 +28,7 @@ class RestauranteController extends Controller
     }
 
     public function searchRestaurantsPaginated(Request $request, string $page){
-        return Restaurante::where('LOWER(nombre)', 'like', '%'.$request->name.'%')->with('restaurante_media')->limit(10)->offset(($page-1)*10)->get();
+        return Restaurante::whereRaw('LOWER(nombre) LIKE', '%'.$request->name.'%')->with('restaurante_media')->limit(10)->offset(($page-1)*10)->get();
     }
 
     /**
