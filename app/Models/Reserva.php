@@ -9,7 +9,7 @@ class Reserva extends Model
 {
     use HasFactory;
 
-    protected $table = 'Reserva';
+    protected $table = 'reserva';
 
     public function user(){
         return $this->belongsTo(User::class);
