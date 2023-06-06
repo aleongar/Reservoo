@@ -2,6 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpClient, HttpE
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, map, catchError, throwError } from 'rxjs';
+import { API_URL } from 'src/app/constants/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthInterceptorService implements HttpInterceptor{
   public ADMIN = '1';
   public CLIENTE = '2';
   public EMPRESA = '3';
-  private url = 'http://reservoo.com' //TODO: Cambiar cuando se pase a produccion
+  private url = API_URL +"api/login";
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
@@ -39,7 +40,7 @@ export class AuthInterceptorService implements HttpInterceptor{
   }
 
   retrieveToken(email: string, password: string){
-    return this.http.post<any>(this.url+"/api/login", {email: email, pass: password})
+    return this.http.post<any>(this.url, {email: email, pass: password})
     .pipe(
       map((res) => {
         localStorage.setItem('token', res.token);

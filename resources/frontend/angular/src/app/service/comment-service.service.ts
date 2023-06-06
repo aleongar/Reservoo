@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Comment } from '../interfaces/comment.interface';
 import { HttpClient } from '@angular/common/http';
+import { API_URL } from '../constants/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentServiceService {
 
-  private url = 'http://reservoo.com/api/coments'
+  private url = API_URL + 'api/coments'
 
   constructor(private http: HttpClient) { }
 

@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Resenas } from '../interfaces/resenas.interface';
+import { API_URL } from '../constants/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResenasServiceService {
 
-  private url = 'http://reservoo.com/api/resenas' //TODO: cambiar cuando tal
+  private url = API_URL + 'api/resenas'
 
   constructor(private http: HttpClient) { }
 
