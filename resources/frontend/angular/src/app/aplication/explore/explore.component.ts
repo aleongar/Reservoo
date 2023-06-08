@@ -9,7 +9,14 @@ import { RestaurantServiceService } from 'src/app/service/restaurant-service.ser
   styleUrls: ['./explore.component.scss']
 })
 export class ExploreComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private restauranteService: RestaurantServiceService){}
+  constructor(private route: ActivatedRoute, private restauranteService: RestaurantServiceService){
+    let loadMore = () => this.loadMore();
+    $(window).scroll(function() {
+      if($(window).scrollTop()! + $(window).height()! == $(document).height()) {
+        loadMore();
+      }
+    });
+  }
   restaurants!: Restaurant[];
   page: number = 1;
   canLoadMore: boolean = true;
@@ -25,6 +32,7 @@ export class ExploreComponent implements OnInit {
       }
     );
   }
+
 
   loadMore(){
     this.page++;

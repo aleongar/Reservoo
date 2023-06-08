@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Carousel } from "flowbite";
 import type { CarouselItem, CarouselOptions, CarouselInterface } from "flowbite";
 import { Restaurant } from 'src/app/interfaces/restaurant.inteface';
 import { ReservationsServiceService } from 'src/app/service/reservations-service.service';
+import * as bootstrap from 'bootstrap'
+import { ResenasServiceService } from 'src/app/service/resenas-service.service';
 
 @Component({
   selector: 'app-restaurant',
@@ -13,9 +15,11 @@ import { ReservationsServiceService } from 'src/app/service/reservations-service
 export class RestaurantComponent implements OnInit {
 
   restaurante!: Restaurant;
-  constructor(private route: ActivatedRoute, private reservaService: ReservationsServiceService){}
+  constructor(private rederer: Renderer2, private route: ActivatedRoute, private reservaService: ReservationsServiceService, private resenaService: ResenasServiceService){}
   imageMedia: any[] = [];
   menuReserva = false;
+  openCommentMenu = false;
+  resenaValue: number = 0;
 
   getPdf(){
     let pdf = this.restaurante.restaurante_media.filter((media) => {return media.format == 'pdf'})[0];
@@ -26,6 +30,7 @@ export class RestaurantComponent implements OnInit {
         return `../../storage/uploads/user-${this.restaurante.user_id}/${pdf.filename}`
       }
     }
+    return false;
   }
 
   getImage(media: any){
@@ -43,6 +48,10 @@ export class RestaurantComponent implements OnInit {
 
   isLoggedIn(){
     return localStorage.getItem('token') != null && localStorage.getItem('token') != undefined;
+  }
+
+  numericArray(number: number){
+    return Array.from(Array(number).keys())
   }
 
   sendReserva(event: any){
@@ -63,5 +72,19 @@ export class RestaurantComponent implements OnInit {
 
       $('#buttonsend').removeAttr('disabled');
     })
+  }
+
+  enviarComentario(event: any){
+    event.preventDefault();
+    let sendData = {
+      calificacion: this.resenaValue,
+      contenido: $('#opinion').val(),
+      user: localStorage.getItem('id'),
+      restaurante: this.restaurante.id
+    }
+    this.resenaService.postResena(sendData).subscribe(() => {
+      console.log('mandao');
+      window.location.reload();
+    });
   }
 }

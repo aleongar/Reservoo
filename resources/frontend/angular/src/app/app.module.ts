@@ -10,6 +10,7 @@ import { AuthInterceptorService } from './service/auth/auth-interceptor.service'
 import { FormsModule } from '@angular/forms';
 import { RegistroCienteComponent } from './registro-ciente/registro-ciente.component';
 import { RestaurantesInfoComponent } from './restaurantes-info/restaurantes-info.component';
+import { SafeHTMLPipe } from './safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { RestaurantesInfoComponent } from './restaurantes-info/restaurantes-info
     LoginComponent,
     RegistroCienteComponent,
     RestaurantesInfoComponent,
+    SafeHTMLPipe,
   ],
   imports: [
     BrowserModule,

@@ -78,6 +78,16 @@
       <button class="cursor-pointer p-3 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">
         {{editing ? 'Editar' :'Añadir'}}
       </button>
+      <button type="button" *ngIf="editing" (click)="mostrarLink = true; setIframeLink()" class="cursor-pointer mx-2 p-3 border-[3px] border-green-400 rounded-xl transition ease-in-out hover:border-cyan-500">
+        Insertar en web
+      </button>
+    </div>
+    <div *ngIf="mostrarLink" class="mb-6">
+      <input type="text" readonly class="w-[30%]" [value]="iframeLink">
+      <button (click)="copyToClipboard()" type="button" class="cursor-pointer mx-2 p-3 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">Copiar al portapapeles</button>
+    </div>
+    <div *ngIf="copiao" class="mb-6 text-green">
+      Copiado correctamente
     </div>
   </div>
 </form>

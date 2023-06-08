@@ -14,6 +14,7 @@ import { ExploreComponent } from './explore/explore.component';
 import { RestaurantExploreService } from '../restaurant-explore.service';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { RestaurantByIdResolverService } from '../resolvers/restaurant-by-id-resolver.service';
+import { IframeComponent } from './iframe/iframe.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent, children: [
@@ -26,7 +27,8 @@ const routes: Routes = [
       {path: 'misReservas', component: MisReservasComponent, resolve: {reservations: ReservasResolverService}}
     ]},
     {path: 'explore', component: ExploreComponent, resolve: {restaurants: RestaurantExploreService}},
-    {path: 'restaurant/:id', component: RestaurantComponent, resolve: {restaurant: RestaurantByIdResolverService}}
+    {path: 'restaurant/:id', component: RestaurantComponent, resolve: {restaurant: RestaurantByIdResolverService}},
+    {path: 'iframe/:id', component: IframeComponent, resolve: {restaurant: RestaurantByIdResolverService}},
   ]}
 ];
 

@@ -98,7 +98,12 @@ class RestauranteController extends Controller
      */
     public function show(string $id)
     {
-        return Restaurante::with('restaurante_media')->findOrFail($id);
+        $restaurante = Restaurante::with('restaurante_media')->with('resenas')->findOrFail($id);
+        $restaurante->resenas = $restaurante->resenas;
+        $restaurante->resenas->each(function($resena){
+            $resena->user = $resena->user;
+        });
+        return $restaurante;
     }
 
     /**

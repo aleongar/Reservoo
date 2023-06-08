@@ -36,7 +36,7 @@ class ResenasController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Resena::with('user')->findOrFail($id);
     }
 
     /**

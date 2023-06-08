@@ -16,7 +16,9 @@ export class GestionRestauranteComponent implements OnInit{
   cardUpload = false;
   restaurant!: Restaurant;
   imageArray: any[] = [];
-
+  mostrarLink = false;
+  iframeLink = '';
+  copiao = false;
 
   ngOnInit(): void {
     if(this.route.snapshot.data['restaurante']){
@@ -49,6 +51,12 @@ export class GestionRestauranteComponent implements OnInit{
     }
   }
 
+  setIframeLink(){
+    let link = location.origin + '/iframe/' + this.restaurant.id;
+    console.log(link);
+    this.iframeLink = `<iframe src="${link}" frameborder="0" scrolling="no" width="100px" height="100px">`;
+  }
+
   changeMethod(e: Event){
     this.cardUpload = $('input[name="online"]:checked').val() == 1;
   }
@@ -69,6 +77,13 @@ export class GestionRestauranteComponent implements OnInit{
       }
     );
 
+  }
+
+  copyToClipboard(){
+    navigator.clipboard.writeText(this.iframeLink)
+    .then(() => {
+      this.copiao = true;
+    });
   }
 
   sendRestaurante(event: any){

@@ -14,6 +14,9 @@ import { ReservationCardComponent } from './reservation-card/reservation-card.co
 import { ExploreComponent } from './explore/explore.component';
 import { ExploreCardsComponent } from './explore-cards/explore-cards.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { IframeComponent } from './iframe/iframe.component';
+import { SafeHTMLPipe } from './pipe/safe-html.pipe';
 
 
 @NgModule({
@@ -29,11 +32,14 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
     ReservationCardComponent,
     ExploreComponent,
     ExploreCardsComponent,
-    RestaurantComponent
+    RestaurantComponent,
+    IframeComponent,
+    SafeHTMLPipe
   ],
   imports: [
     CommonModule,
-    AplicationRoutingModule
+    AplicationRoutingModule,
+    NgbCarouselModule
   ]
 })
 export class AplicationModule { }

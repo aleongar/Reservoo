@@ -1,3 +1,4 @@
+import { Resenas } from "./resenas.interface";
 import { User } from "./user.interface";
 
 export class Restaurant{
@@ -11,9 +12,10 @@ export class Restaurant{
   user_id: string;
   user: User;
   restaurante_media: any[];
+  resenas: Resenas[] = [];
 
 
-  constructor(id: string, nombre: string, user_id: string, descripcion: string, aforo: number, h_manana: string, h_tarde: string, direccion: string, user: User, restaurante_media: any[]) {
+  constructor(id: string, nombre: string, user_id: string, descripcion: string, aforo: number, h_manana: string, h_tarde: string, direccion: string, user: User, restaurante_media: any[], resenas: Resenas[]) {
     this.id = id;
     this.nombre = nombre;
     this.user_id = user_id;
@@ -24,5 +26,6 @@ export class Restaurant{
     this.direccion = direccion;
     this.user = user;
     this.restaurante_media = restaurante_media;
+    this.resenas = resenas;
   }
 }

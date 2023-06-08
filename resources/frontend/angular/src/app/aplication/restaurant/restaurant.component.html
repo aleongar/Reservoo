@@ -1,40 +1,110 @@
-<div class="py-[19.5vh] px-3 flex items-center flex-col justify-between">
-  <h1 class="text-[4em] text-center pb-5">{{restaurante.nombre}}</h1>
-  <div class="flex flex-col w-full"><strong>Descripción: </strong><span class="overflow-hidden">{{restaurante.descripcion}}</span></div>
-  <div class="flex flex-col justify-between">
-    <div class="flex mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
-      </svg>
-      {{restaurante.h_manana}}
+<div class="container px-3">
+    <div class="row flex-column-reverse flex-xl-row">
+    <div class="col-12 col-xl-6 align-self-center">
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div *ngIf="imageMedia.length != 0">
+            <div class="carousel-item" [ngClass]="i == 0 ? 'active' : ''" data-bs-interval="3000" *ngFor="let media of imageMedia; let i = index">
+              <img [src]="getImage(media)" class="rounded d-block w-full " alt="...">
+            </div>
+          </div>
+          <div *ngIf="imageMedia.length == 0">
+            <div class="carousel-item active">
+              <img src="https://picsum.photos/id/395/600/300" class="rounded-lg d-block w-full " alt="...">
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" id="next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     </div>
-    <div class="flex mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
-        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-      </svg>
-      {{restaurante.h_tarde}}
-    </div>
-    <div class="flex mb-3 ">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-      </svg>
-      {{restaurante.direccion }}
+    <div class="col-12 col-xl-6">
+
+
+      <div class="flex flex-col justify-between">
+        <h1 class="text-[4em] text-center pb-5">{{restaurante.nombre}}</h1>
+        <div class="flex flex-col mb-6"><strong>Descripción: </strong><span>{{restaurante.descripcion}}</span></div>
+        <div class="flex mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+          </svg>
+          {{restaurante.h_manana}}
+        </div>
+        <div class="flex mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+          </svg>
+          {{restaurante.h_tarde}}
+        </div>
+        <div class="flex mb-6 ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+          </svg>
+          {{restaurante.direccion}}
+        </div>
+      </div>
     </div>
   </div>
-  <div class="flex my-3 p-3 justify-between border border-green-300 bg-white">
-    <p *ngIf="imageMedia.length == 0">Este restaurante no tiene fotos.</p>
-    <p class="border rounded mx-3" *ngFor="let media of imageMedia"><img [src]="getImage(media)" alt="..."></p>
+  <div class="row justify-between">
+    <button *ngIf="isLoggedIn()" (click)="menuReserva = !menuReserva" class="col-12 col-xl-3 p-3 p-xl-0 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500 ">Reservar</button>
+    <a *ngIf="!isLoggedIn()" routerLink="../../../login" class= "text-center col-12 col-xl-3 p-3 p-xl-0 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">Inicia sesión para reservar</a>
+    <a target="_blank" class="col-12 col-xl-3 text-center p-3 border border-green-400 border-[3px] mb-6 rounded-xl transition ease-in-out hover:border-cyan-500" [href]="getPdf()">Ver carta</a>
   </div>
-  <a target="_blank" class="p-3 border border-green-400 border-[3px] mb-3 rounded-xl transition ease-in-out hover:border-cyan-500" [href]="getPdf()">Ver carta</a>
-  <button *ngIf="isLoggedIn()" (click)="menuReserva = !menuReserva" class="p-3 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500 ">Reservar</button>
-  <button *ngIf="!isLoggedIn()" disabled class="p-3 bg-green-400 rounded-xl transition ease-in-out cursor-not-allowed">Inicia sesión para reservar</button>
-  <div *ngIf="menuReserva">
-  <form class="my-4 border flex flex-col" (submit)="sendReserva($event)">
-    <label for="reserva">Día y hora de la reserva</label>
-    <input class="rounded-xl" type="datetime-local" id="reserva" name="reserva">
-    <button type="submit" id="buttonsend" class="p-3 my-2 bg-green-700 rounded-xl transition ease-in-out hover:bg-cyan-500 disabled:bg-green-100">Enviar reserva</button>
-    <div id="info"></div>
-  </form>
-</div>
+  <div class="row" *ngIf="menuReserva">
+    <form class="col-12 col-xl-3 my-4 border flex flex-col" (submit)="sendReserva($event)">
+      <label for="reserva">Día y hora de la reserva</label>
+      <input class="rounded-xl" type="datetime-local" id="reserva" name="reserva">
+      <button type="submit" id="buttonsend" class="p-3 my-2 bg-green-700 rounded-xl transition ease-in-out hover:bg-cyan-500 disabled:bg-green-100">Enviar reserva</button>
+      <div id="info"></div>
+    </form>
+  </div>
+  <div class="row mt-2">
+    <div class="col-12"><span class="text-center text-[3em]">Comentarios: </span></div>
+    <div *ngIf="isLoggedIn()" class="col-12 text-[2em]">
+      Deja tu reseña aquí:
+      <form class="row" (submit)="enviarComentario($event)">
+        <div class="col-xl-4 col-12">
+          <span class="text-[0.5em]">Puntuación:</span>
+          <div id="full-stars-example-two">
+            <div class="rating-group">
+                <input disabled checked (change)="resenaValue = 0" class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
+                <label aria-label="1 star" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="resenaValue = 1" class="rating__input" name="rating3" id="rating3-1" value="1" type="radio">
+                <label aria-label="2 stars" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="resenaValue = 2" class="rating__input" name="rating3" id="rating3-2" value="2" type="radio">
+                <label aria-label="3 stars" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="resenaValue = 3" class="rating__input" name="rating3" id="rating3-3" value="3" type="radio">
+                <label aria-label="4 stars" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="resenaValue = 4" class="rating__input" name="rating3" id="rating3-4" value="4" type="radio">
+                <label aria-label="5 stars" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input (change)="resenaValue = 5" class="rating__input" name="rating3" id="rating3-5" value="5" type="radio">
+            </div>
+          </div>
+        </div>
+        <div *ngIf="resenaValue != 0" class="col-xl-8 col-12">
+          <span class="text-[0.5em]">Deja tu opinion:</span>
+          <textarea id="opinion" name="opinion" rows="5" placeholder="Comentanos más sobre tu experiencia (opcional)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"></textarea>
+          <button type="submit" class="text-[0.5em] p-3 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">Enviar</button>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="restaurante.resenas.length != 0" class="mt-2 row justify-end">
+      <div *ngFor="let resena of restaurante.resenas" class="text-[1em] col-12 col-xl-10 border border-black bg-white">
+        <div class="row flex-row">
+          <div class="col-4 font-bold">Usuario: {{resena.user.name}}</div>
+          <div class="col-6">
+            Calificación:  <i *ngFor="let item of numericArray(resena.calificacion)" class="rating__icon rating__icon--star fa fa-star"></i>
+          </div>
+        </div>
+        <div class="">{{resena.contenido}}</div>
+      </div>
+    </div>
+  </div>
 </div>
