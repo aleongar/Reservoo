@@ -4,7 +4,6 @@ import { Carousel } from "flowbite";
 import type { CarouselItem, CarouselOptions, CarouselInterface } from "flowbite";
 import { Restaurant } from 'src/app/interfaces/restaurant.inteface';
 import { ReservationsServiceService } from 'src/app/service/reservations-service.service';
-import * as bootstrap from 'bootstrap'
 import { ResenasServiceService } from 'src/app/service/resenas-service.service';
 
 @Component({
