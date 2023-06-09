@@ -52,10 +52,10 @@
       </div>
     </div>
   </div>
-  <div class="row justify-between">
-    <button *ngIf="isLoggedIn()" (click)="menuReserva = !menuReserva" class="col-12 col-xl-3 p-3 p-xl-0 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500 ">Reservar</button>
+  <div class="row justify-between my-4">
+    <button *ngIf="isLoggedIn()" (click)="menuReserva = !menuReserva" class="h-[3em] col-12 col-xl-3 p-3 p-xl-0 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500 ">Reservar</button>
     <a *ngIf="!isLoggedIn()" routerLink="../../../login" class= "text-center col-12 col-xl-3 p-3 p-xl-0 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">Inicia sesión para reservar</a>
-    <a target="_blank" class="col-12 col-xl-3 text-center p-3 border border-green-400 border-[3px] mb-6 rounded-xl transition ease-in-out hover:border-cyan-500" [href]="getPdf()">Ver carta</a>
+    <a target="_blank" *ngIf="getPdf()" class="col-12 col-xl-3 text-center p-3 border border-green-400 border-[3px] mb-6 rounded-xl transition ease-in-out hover:border-cyan-500" [href]="getPdf()">Ver carta</a>
   </div>
   <div class="row" *ngIf="menuReserva">
     <form class="col-12 col-xl-3 my-4 border flex flex-col" (submit)="sendReserva($event)">
