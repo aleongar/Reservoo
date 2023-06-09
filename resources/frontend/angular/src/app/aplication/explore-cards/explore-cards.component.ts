@@ -14,7 +14,7 @@ export class ExploreCardsComponent {
     if(imageMedia.length == 0){
       return 'https://picsum.photos/id/395/300';
     }else{
-      return `../../storage/uploads/user-${this.restaurante.user_id}/${this.restaurante.restaurante_media[0].filename}`;
+      return `../../app/public/storage/uploads/user-${this.restaurante.user_id}/${imageMedia[0].filename}`;
     }
   }
 }

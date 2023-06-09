@@ -33,7 +33,7 @@ export class RestaurantComponent implements OnInit {
   }
 
   getImage(media: any){
-    return `../../storage/uploads/user-${this.restaurante.user_id}/${media.filename}`;
+    return `../../app/public/storage/uploads/user-${this.restaurante.user_id}/${media.filename}`;;
   }
 
   ngOnInit(): void {
