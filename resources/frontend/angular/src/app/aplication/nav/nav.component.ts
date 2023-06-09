@@ -30,7 +30,6 @@ export class NavComponent {
   logOut(){
     localStorage.clear();
     sessionStorage.clear();
-    this.router.navigate(['/login']);
     window.location.reload();
   }
 

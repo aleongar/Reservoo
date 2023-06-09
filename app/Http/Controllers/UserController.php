@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomeMail;
 use App\Models\Restaurante;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -40,6 +42,8 @@ class UserController extends Controller
             $user->password = bcrypt(1234);
         $user->rol = $request->rol;
         $user->save();
+        // Mail::to($user->email)->send(new WelcomeMail($user));
+        Mail::to($user->email)->send(new WelcomeMail($user));
         return $user;
     }
 
