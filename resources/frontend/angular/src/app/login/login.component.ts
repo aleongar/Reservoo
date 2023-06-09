@@ -37,6 +37,13 @@ export class LoginComponent implements OnInit{
 
   logIn(){
     document.getElementById('info')!.style.display = 'none';
+    if(this.loginData.email == '' || this.loginData.password == '' ){
+      document.getElementById('info')!.innerText = 'Algún campo está vacío';
+      document.getElementById('info')!.classList.add('text-red-600');
+      document.getElementById('info')!.style.display = 'block';
+      sessionStorage.setItem('info', 'null');
+      return;
+    }
     this.loginService.retrieveToken(this.loginData?.email, this.loginData?.password).subscribe(
     (token) => {
       console.log(localStorage.getItem('rol'));

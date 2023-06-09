@@ -1,4 +1,4 @@
-<div class="container px-3">
+<div class="container my-2 px-3">
     <div class="row flex-column-reverse flex-xl-row">
     <div class="col-12 col-xl-6 align-self-center">
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -54,7 +54,7 @@
   </div>
   <div class="row justify-between my-4">
     <button *ngIf="isLoggedIn()" (click)="menuReserva = !menuReserva" class="h-[3em] col-12 col-xl-3 p-3 p-xl-0 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500 ">Reservar</button>
-    <a *ngIf="!isLoggedIn()" routerLink="../../../login" class= "text-center col-12 col-xl-3 p-3 p-xl-0 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">Inicia sesión para reservar</a>
+    <a *ngIf="!isLoggedIn()" routerLink="../../../login" class= "h-[3em] text-center col-12 col-xl-3 p-3 p-xl-0 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">Inicia sesión para reservar</a>
     <a target="_blank" *ngIf="getPdf()" class="col-12 col-xl-3 text-center p-3 border border-green-400 border-[3px] mb-6 rounded-xl transition ease-in-out hover:border-cyan-500" [href]="getPdf()">Ver carta</a>
   </div>
   <div class="row" *ngIf="menuReserva">

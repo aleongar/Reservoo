@@ -3,15 +3,15 @@
     <div class="mb-6">
       <label>Horario Mañana:</label>
       <div class="mb-6 flex flex-row items-center justify-between">
-        <input type="time" class="w-[50%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="h_m_1" name="h_m_1">
+        <input (focusout)="isEmpty($event)" type="time" class="w-[50%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="h_m_1" name="h_m_1">
         -
-        <input type="time" class="w-[50%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="h_m_2" name="h_m_2">
+        <input (focusout)="isEmpty($event)" type="time" class="w-[50%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="h_m_2" name="h_m_2">
       </div>
       <label>Horario Tarde:</label>
       <div class="mb-6 flex flex-row items-center justify-between">
-        <input type="time" class="w-[50%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="h_t_1" name="h_t_1">
+        <input (focusout)="isEmpty($event)" type="time" class="w-[50%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="h_t_1" name="h_t_1">
         -
-        <input type="time" class="w-[50%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="h_t_2" name="h_t_2">
+        <input (focusout)="isEmpty($event)" type="time" class="w-[50%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="h_t_2" name="h_t_2">
       </div>
       <input accept="image/*" class="mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="multiple_files" type="file" multiple>
     </div>
@@ -42,19 +42,19 @@
   <div class="md:w-[55%]">
     <div class="mb-6">
       <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
-      <input type="text" id="nombre" name="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+      <input (focusout)="isEmpty($event)" type="text" id="nombre" name="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
     </div>
     <div class="mb-6">
       <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Ubicación</label>
-      <input type="text" id="direccion" name="direccion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+      <input (focusout)="isEmpty($event)" type="text" id="direccion" name="direccion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
     </div>
     <div class="mb-6">
       <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Descripción</label>
-      <textarea id="descripcion" name="descripcion" rows="5" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></textarea>
+      <textarea (focusout)="isEmpty($event)" id="descripcion" name="descripcion" rows="5" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></textarea>
     </div>
     <div class="mb-6">
       <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Aforo</label>
-      <input type="number" min="1" id="aforo" name="aforo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+      <input (focusout)="isEmpty($event)" type="number" min="1" id="aforo" name="aforo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
     </div>
     <div class="mb-6">
       <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900">Carta</label>
@@ -68,14 +68,14 @@
       </div>
     </div>
     <div *ngIf="!cardUpload" class="mb-6">
-      <input placeholder="url de la carta" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" name="carta" id="carta">
+      <input (focusout)="isEmpty($event)" placeholder="url de la carta" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" name="carta" id="carta">
     </div>
     <div *ngIf="cardUpload" class="mb-6">
-      <input accept="application/pdf" type="file" name="carta" id="carta">
+      <input (focusout)="isEmpty($event)" accept="application/pdf" type="file" name="carta" id="carta">
     </div>
 
     <div class="mb-6">
-      <button class="cursor-pointer p-3 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">
+      <button id="submit" class="cursor-pointer p-3 bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500 disabled:opacity-50 disabled:hover:cursor-default disabled:hover:bg-green-400">
         {{editing ? 'Editar' :'Añadir'}}
       </button>
       <button type="button" *ngIf="editing" (click)="mostrarLink = true; setIframeLink()" class="cursor-pointer mx-2 p-3 border-[3px] border-green-400 rounded-xl transition ease-in-out hover:border-cyan-500">

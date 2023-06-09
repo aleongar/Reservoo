@@ -30,7 +30,7 @@ export class NavComponent {
   logOut(){
     localStorage.clear();
     sessionStorage.clear();
-    window.location.reload();
+    this.router.navigate(['/']);
   }
 
   isRestaurant(){
