@@ -10,8 +10,11 @@
         <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-green-400 hover:bg-cyan-500 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-4 py-2">Busca</button>
     </div>
   </form>
-  <div class="row">
+  <div *ngIf="restaurants.length > 0" class="row">
     <app-explore-cards [ngClass]="restaurants.length <= 3 ? 'col-xl-12' : 'col-xl-4'" class="col-12 col-md-6 col-xl-4" *ngFor="let restaurant of restaurants" [restaurante]="restaurant"></app-explore-cards>
+  </div>
+  <div *ngIf="restaurants.length == 0">
+    <h2 class="text-3xl text-cursive">No se han encontrado restaurantes con los filtros actuales  </h2>
   </div>
   <button [style]="canLoadMore ? '' : 'display: none;'" (click)="loadMore()" class="mb-3 p-3 float-right bg-green-400 rounded-xl transition ease-in-out hover:bg-cyan-500">Cargar más</button>
 </div>
