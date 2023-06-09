@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReservationMail;
 use App\Models\Reserva;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ReservasController extends Controller
 {
@@ -36,6 +39,7 @@ class ReservasController extends Controller
             $reservation->aprovada = $request->aprovado;
         }
         $reservation->save();
+        Mail::to(User::findOrFail($request->user))->send(new ReservationMail($reservation));
         return $reservation;
     }
 
@@ -107,6 +111,7 @@ class ReservasController extends Controller
         $reservation = Reserva::findOrFail($id);
         $reservation->aprovada = $request['confirm'] ? 1 : 0;
         $reservation->save();
+        Mail::to(User::findOrFail($reservation->user_id))->send(new ReservationMail($reservation));
         return $request;
     }
 

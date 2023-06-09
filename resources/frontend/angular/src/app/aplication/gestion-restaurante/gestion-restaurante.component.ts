@@ -79,6 +79,31 @@ export class GestionRestauranteComponent implements OnInit{
 
   }
 
+  toggleDisable(mustBeDisabled: boolean): void{
+    let button = document.getElementById("submit")!;
+    if(mustBeDisabled)
+    {
+      button.setAttribute("disabled", "disabled");
+    }
+    else
+    {
+      button.removeAttribute("disabled");
+    }
+  }
+
+  isEmpty(event: any){
+    if(event.srcElement.value == ''){
+      event.srcElement.style.border = '1px solid red';
+      this.toggleDisable(true);
+      return false;
+    }else{
+      event.srcElement.style.border = '';
+      this.toggleDisable(false);
+      return true;
+    }
+    return false;
+  }
+
   copyToClipboard(){
     navigator.clipboard.writeText(this.iframeLink)
     .then(() => {
@@ -135,7 +160,30 @@ export class GestionRestauranteComponent implements OnInit{
     return formdata;
   }
 
+  checkInputs(){
+    let inputs = document.querySelectorAll('form input');
+
+    let inputExcluido = document.querySelector('form input#multiple_files');
+
+    let inputsFiltrados = Array.prototype.filter.call(inputs, function(input) {
+      return input !== inputExcluido;
+    });
+
+    let puedeIr = true;
+
+    inputsFiltrados.forEach((input) =>{
+      if(this.isEmpty({srcElement: input})){
+        puedeIr = false;
+        return;
+      }
+    })
+    return puedeIr;
+  }
+
   postRestaurant(event: any){
+    if(this.checkInputs()){
+      return;
+    }
     this.restaurantSevice.postWithFiles(this.prepareData(event)).subscribe(
       (res) => {console.log(res); this.router.navigate(['app/misRestaurantes']);}
     );
